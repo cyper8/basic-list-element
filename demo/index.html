@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <style>
+    body {
+      background: #fafafa;
+    }
+  </style>
+</head>
+<body>
+  <div id="demo"></div>
+
+  <script type="module">
+    import { html, render } from 'lit-html';
+    import '../dist/basic-list-element.js';
+
+    const label = 'Hello owc World!';
+    let selection;
+    const re = () => render(
+      html`
+        ${selection ? selection.index : ''}
+        <basic-list-element .label=${label} @selection-changed="${(e) => {
+          selection = e.detail.selection;
+          re();
+        }}">
+          <p>item 1</p>
+          <p>item 2</p>
+          <p>item 3</p>
+        </basic-list-element>
+      `,
+      document.querySelector('#demo')
+    );
+    re();
+  </script>
+</body>
+</html>

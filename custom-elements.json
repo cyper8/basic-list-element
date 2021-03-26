@@ -1,0 +1,26 @@
+{
+  "version": 2,
+  "tags": [
+    {
+      "name": "basic-list-element",
+      "description": "A selectable list component with a label and an action counter",
+      "properties": [
+        {
+          "name": "label",
+          "type": "String",
+          "description": "The label on selection",
+          "default": "Hey there"
+        }
+      ],
+      "events": [],
+      "slots": [],
+      "cssProperties": [
+        {
+          "name": "--basic-list-element-text-color",
+          "description": "Main Text Color",
+          "type": "Color"
+        }
+      ]
+    }
+  ]
+}
