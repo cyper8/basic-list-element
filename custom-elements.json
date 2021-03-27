@@ -9,16 +9,122 @@
           "name": "label",
           "type": "String",
           "description": "The label on selection",
-          "default": "Hey there"
+          "default": ""
+        },
+        {
+          "name": "name",
+          "type": "String",
+          "description": "A name of the property to be set by the list",
+          "default": ""
+        },
+        {
+          "name": "multiple",
+          "type": "Boolean",
+          "description": "Controls whether multiple options can be selected",
+          "default": false
+        },
+        {
+          "name": "defaultSelectionIndex",
+          "type": "Array<number>",
+          "description": "Which options should be selected by default",
+          "default": []
+        },
+        {
+          "name": "selected",
+          "type": "Array<Element>",
+          "description": "A getter to retrieve selected html elements",
+          "default": []
+        },
+        {
+          "name": "selectedIndexes",
+          "type": "Array<number>",
+          "description": "A getter to retrieve an Array with indexes of selected options",
+          "default": []
+        },
+        {
+          "name": "__items",
+          "type": "ReadOnlyArray<Element>",
+          "description": "An immutable array of references to html content of all options. Populated with lightDom children upon construction",
+          "default": []
+        },
+        {
+          "name": "__selectedIndexes",
+          "type": "Set<number>",
+          "description": "A Set of indexes of selected options",
+          "default": "empty Set or Set of defaultSelectionIndex"
+        },
+        {
+          "name": "__selectItem(itemIndex: number)",
+          "type": "void",
+          "description": "private method to select item with index of itemIndex"
+        },
+        {
+          "name": "__deselectItem(itemIndex: number)",
+          "type": "void",
+          "description": "private method to unselect item of itemIndex"
+        },
+        {
+          "name": "__toggleItemSelection(index: number)",
+          "type": "void",
+          "description": "private method which inverts the selected state of item with index"
         }
       ],
-      "events": [],
-      "slots": [],
+      "events": [
+        {
+          "name":"selection-changed",
+          "summary": "fires when selected options change",
+          "description": "Event fires when options have been selected",
+          "type": "SelectionEvent",
+          "inheritedFrom": "CustomEvent"
+        }
+      ],
+      "slots": [{
+        "name": "",
+        "summary": "Default slot that has items content",
+        "description": "Default slot that has items content"
+      }],
       "cssProperties": [
         {
-          "name": "--basic-list-element-text-color",
-          "description": "Main Text Color",
-          "type": "Color"
+          "name": "--ble-main-color",
+          "description": "Main Color (dark): information, controls, borders",
+          "type": "Color",
+          "defaultValue": "#777"
+        },
+        {
+          "name": "--ble-secondary-color",
+          "description": "Light items: contrast background",
+          "type": "Color",
+          "defaultValue": "#f9f9f9"
+        },
+        {
+          "name": "--ble-bg-color",
+          "description": "Background around the element",
+          "type": "Color",
+          "defaultValue": "transparent"
+        },
+        {
+          "name": "--ble-text-color",
+          "description": "Color of the text",
+          "type": "Color",
+          "defaultValue": "Same as Main (--ble-main-color)"
+        },
+        {
+          "name": "--ble-border-color",
+          "description": "Borders color",
+          "type": "Color",
+          "defaultValue": "Same as Main (--ble-main-color)"
+        },
+        {
+          "name": "--ble-selection-color",
+          "description": "Color of the selected item(s)",
+          "type": "Color",
+          "defaultValue": "#00ccff"
+        },
+        {
+          "name": "--ble-focus-color",
+          "description": "Hover and focus color",
+          "type": "Color",
+          "defaultValue": "#c5f3ff"
         }
       ]
     }
