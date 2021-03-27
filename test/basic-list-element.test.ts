@@ -11,6 +11,16 @@ describe('BasicListElement', () => {
     expect(el.shadowRoot?.textContent).to.include('Header');
   });
 
+  it('has name property', async () => {
+    const testPropName: string = 'selectableProperty';
+    const ble = await fixture<BasicListElement>(
+      html`<basic-list-element name="${testPropName}"></basic-list-element>`
+    );
+    expect(ble.name).to.equal(testPropName);
+    expect(ble.hasAttribute('name')).to.be.true;
+    expect(ble.getAttribute('name')).to.equal(testPropName);
+  });
+
   it('passes the a11y audit', async () => {
     const el = await fixture<BasicListElement>(
       html`<basic-list-element></basic-list-element>`
