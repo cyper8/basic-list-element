@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">66.28% </span>
+                <span class="strong">75.58% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>114/172</span>
+                <span class='fraction'>130/172</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">80% </span>
+                <span class="strong">83.33% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>4/5</span>
+                <span class='fraction'>5/6</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">44.44% </span>
+                <span class="strong">40% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>4/9</span>
+                <span class='fraction'>4/10</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">66.28% </span>
+                <span class="strong">75.58% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>114/172</span>
+                <span class='fraction'>130/172</span>
             </div>
         
             
@@ -362,6 +362,16 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -379,23 +389,13 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -528,22 +528,22 @@ export class BasicListElement extends LitElement {
       &lt;div id="listlabel" class="label"&gt;${this.label}&lt;/div&gt;
       &lt;ul
         class="list"
-        title="select"
+        title="options list"
         aria-labelledby="listlabel"
         role="listbox"
       &gt;
         ${this.__items.map(
           (item, index) =&gt;
-<span class="cstat-no" title="statement not covered" >            html`</span>
-<span class="cstat-no" title="statement not covered" >              &lt;li</span>
-<span class="cstat-no" title="statement not covered" >                role="option"</span>
-<span class="cstat-no" title="statement not covered" >                class="item"</span>
-<span class="cstat-no" title="statement not covered" >                tabindex="0"</span>
-<span class="cstat-no" title="statement not covered" >                data-index="${index}"</span>
-<span class="cstat-no" title="statement not covered" >                @click="${() =&gt; {</span>
+            html`
+              &lt;li
+                role="option"
+                class="item"
+                tabindex="0"
+                data-index="${index}"
+                @click="${<span class="fstat-no" title="function not covered" >() =&gt; {</span>
 <span class="cstat-no" title="statement not covered" >                  this.__toggleItemSelection(index);</span>
-<span class="cstat-no" title="statement not covered" >                }}"</span>
-<span class="cstat-no" title="statement not covered" >                @keydown="${(e: KeyboardEvent) =&gt; {</span>
+                }}"
+                @keydown="${(e: KeyboardEvent) =&gt; {
 <span class="cstat-no" title="statement not covered" >                  const element: HTMLElement | null = e.target as HTMLElement;</span>
 <span class="cstat-no" title="statement not covered" >                  if (!element) return;</span>
 <span class="cstat-no" title="statement not covered" >                  if (e.key === ' ') {</span>
@@ -561,13 +561,13 @@ export class BasicListElement extends LitElement {
 <span class="cstat-no" title="statement not covered" >                    const l = this.__items.length;</span>
 <span class="cstat-no" title="statement not covered" >                    this.__items[(l + index - 1) % l].parentElement?.focus();</span>
 <span class="cstat-no" title="statement not covered" >                  }</span>
-<span class="cstat-no" title="statement not covered" >                }}"</span>
-<span class="cstat-no" title="statement not covered" >                aria-selected="${this.__selectedIndexes.has(index)}"</span>
-<span class="cstat-no" title="statement not covered" >                ?selected="${this.__selectedIndexes.has(index)}"</span>
-<span class="cstat-no" title="statement not covered" >              &gt;</span>
-<span class="cstat-no" title="statement not covered" >                ${item}</span>
-<span class="cstat-no" title="statement not covered" >              &lt;/li&gt;</span>
-<span class="cstat-no" title="statement not covered" >            `</span>
+                }}"
+                aria-selected="${this.__selectedIndexes.has(index)}"
+                ?selected="${this.__selectedIndexes.has(index)}"
+              &gt;
+                ${item}
+              &lt;/li&gt;
+            `
         )}
       &lt;/ul&gt;
     `;
@@ -580,7 +580,7 @@ export class BasicListElement extends LitElement {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Fri Mar 26 2021 19:22:06 GMT+0200 (Eastern European Standard Time)
+                at Sun Mar 28 2021 23:27:09 GMT+0300 (Eastern European Summer Time)
             </div>
         </div>
         <script src="../../prettify.js"></script>
