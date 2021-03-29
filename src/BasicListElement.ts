@@ -77,7 +77,7 @@ export class BasicListElement extends LitElement {
   defaultSelectionIndex: number[] = [];
 
   get selected(): Element[] {
-    return this.selectedIndexes.map(i => this.__items[i]);
+    return this.selectedIndexes.map(i => this.items[i]);
   }
 
   get selectedIndexes(): number[] {
@@ -90,27 +90,27 @@ export class BasicListElement extends LitElement {
   }
 
   @internalProperty()
-  private __items: ReadOnlyArray<Element> = [];
+  private items: ReadOnlyArray<Element> = [];
 
   @internalProperty()
   private __selectedIndexes: Set<number> = new Set();
 
-  private __selectItem(itemIndex: number) {
+  private selectItem(itemIndex: number) {
     if (!this.multiple) this.__selectedIndexes = new Set();
     this.__selectedIndexes.add(itemIndex);
     this.requestUpdate('selectedIndexes');
   }
 
-  private __deselectItem(itemIndex: number) {
+  private deselectItem(itemIndex: number) {
     this.__selectedIndexes.delete(itemIndex);
     this.requestUpdate('selectedIndexes');
   }
 
-  private __toggleItemSelection(index: number) {
+  private toggleItemSelection(index: number) {
     if (this.__selectedIndexes.has(index)) {
-      this.__deselectItem(index);
+      this.deselectItem(index);
     } else {
-      this.__selectItem(index);
+      this.selectItem(index);
     }
   }
 
@@ -135,7 +135,7 @@ export class BasicListElement extends LitElement {
         role="listbox"
         aria-multiselectable="${this.multiple}"
       >
-        ${this.__items.map(
+        ${this.items.map(
           (item, index) =>
             html`
               <li
@@ -144,25 +144,25 @@ export class BasicListElement extends LitElement {
                 tabindex="0"
                 data-index="${index}"
                 @click="${() => {
-                  this.__toggleItemSelection(index);
+                  this.toggleItemSelection(index);
                 }}"
                 @keydown="${(e: KeyboardEvent) => {
                   const element: HTMLElement | null = e.target as HTMLElement;
                   if (!element) return;
                   if (e.key === ' ') {
-                    this.__toggleItemSelection(index);
+                    this.toggleItemSelection(index);
                   }
                   if (e.key === 'Enter') {
-                    this.__selectItem(index);
+                    this.selectItem(index);
                   }
                   if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
-                    this.__items[
-                      (index + 1) % this.__items.length
+                    this.items[
+                      (index + 1) % this.items.length
                     ].parentElement?.focus();
                   }
                   if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
-                    const l = this.__items.length;
-                    this.__items[(l + index - 1) % l].parentElement?.focus();
+                    const l = this.items.length;
+                    this.items[(l + index - 1) % l].parentElement?.focus();
                   }
                 }}"
                 aria-selected="${this.__selectedIndexes.has(index)}"
@@ -178,7 +178,7 @@ export class BasicListElement extends LitElement {
           const children = this.__slotChildren;
           if (children && children.length) {
             // Populate items from light DOM
-            this.__items = new ReadOnlyArray(Array.from(children));
+            this.items = new ReadOnlyArray(Array.from(children));
             // Select the defaults
             this.defaultSelectionIndex.forEach(i =>
               this.__selectedIndexes.add(i)
