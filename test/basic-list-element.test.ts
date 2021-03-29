@@ -2,6 +2,8 @@ import { fixture, expect } from '@open-wc/testing';
 import { html } from 'lit-html';
 import { BasicListElement } from '../src/BasicListElement.js';
 import '../basic-list-element.js';
+import { SpyOn } from './lib/EventSpy.js';
+import { SelectionEvent } from '../src/SelectionEvent.js';
 
 describe('BasicListElement', () => {
   it('can have label', async () => {
@@ -12,7 +14,7 @@ describe('BasicListElement', () => {
   });
 
   it('has name property', async () => {
-    const testPropName: string = 'selectableProperty';
+    const testPropName = 'selectableProperty';
     const ble = await fixture<BasicListElement>(
       html`<basic-list-element name="${testPropName}"></basic-list-element>`
     );
@@ -22,30 +24,123 @@ describe('BasicListElement', () => {
   });
 
   it('shows light DOM children as selectable options', async () => {
+    const options: string[] = ['Option 1', 'Option 2', 'Option 3'];
     const ble = await fixture<BasicListElement>(
       html`<basic-list-element label="List">
-        <p>Option 1</p>
-        <p>Option 2</p>
-        <p>Option 3</p>
+        ${options.map(op => html`<p>${op}</p>`)}
       </basic-list-element>`
     );
 
-    // eslint-disable-next-line no-undef
-    const renderedOptions: NodeListOf<HTMLLIElement> = ble.shadowRoot!.querySelectorAll<HTMLLIElement>(
-      'li.item'
-    );
-
-    expect(renderedOptions.length).to.equal(3);
-    expect(renderedOptions.item(0).textContent).to.include('Option 1');
-    expect(renderedOptions.item(1).textContent).to.include('Option 2');
-    expect(renderedOptions.item(2).textContent).to.include('Option 3');
+    const renderedOptions:
+      | NodeListOf<HTMLLIElement>
+      | undefined = ble.shadowRoot?.querySelectorAll<HTMLLIElement>('li.item');
+    if (renderedOptions) {
+      expect(renderedOptions.length).to.equal(3);
+      options.forEach((opt, index) =>
+        expect(renderedOptions.item(index).textContent).to.contain(opt)
+      );
+    } else {
+      throw new Chai.AssertionError('Element failed to render shadow root');
+    }
   });
 
-  xit('selects option upon click', async () => {});
-  xit('has multiple selection mode', async () => {});
-  xit('has getters to expose selected items, and indexes', async () => {});
-  xit('fires event when select', async () => {});
-  xit('responds on keyboard navigation and selection', async () => {});
+  it('selects option upon click', async () => {
+    const options: string[] = ['Option 1', 'Option 2', 'Option 3'];
+    const ble = await fixture<BasicListElement>(
+      html`<basic-list-element label="List">
+        ${options.map(op => html`<p>${op}</p>`)}
+      </basic-list-element>`
+    );
+    const renderedOptions:
+      | NodeListOf<HTMLLIElement>
+      | undefined = ble.shadowRoot?.querySelectorAll<HTMLLIElement>('li.item');
+    if (renderedOptions) {
+      const theItem = renderedOptions.item(0);
+      theItem.click();
+      await ble.updateComplete;
+      expect(theItem).to.have.attribute('selected');
+    } else {
+      throw new Chai.AssertionError('Element failed to render shadow root');
+    }
+  });
+
+  it('has multiple selection mode', async () => {
+    const options: string[] = ['Option 1', 'Option 2', 'Option 3'];
+    const ble = await fixture<BasicListElement>(
+      html`<basic-list-element multiple label="List">
+        ${options.map(op => html`<p>${op}</p>`)}
+      </basic-list-element>`
+    );
+    const renderedOptions:
+      | NodeListOf<HTMLLIElement>
+      | undefined = ble.shadowRoot?.querySelectorAll<HTMLLIElement>('li.item');
+    if (renderedOptions) {
+      const theItems = [renderedOptions.item(0), renderedOptions.item(2)];
+      theItems.forEach(i => i.click());
+      await ble.updateComplete;
+      theItems.forEach(i => expect(i).to.have.attribute('selected'));
+    } else {
+      throw new Chai.AssertionError('Element failed to render shadow root');
+    }
+  });
+
+  it('has getters to expose selected items, and indexes', async () => {
+    const options: string[] = ['Option 1', 'Option 2', 'Option 3'];
+    const ble = await fixture<BasicListElement>(
+      html`<basic-list-element multiple label="List">
+        ${options.map(op => html`<p>${op}</p>`)}
+      </basic-list-element>`
+    );
+    const renderedOptions:
+      | NodeListOf<HTMLLIElement>
+      | undefined = ble.shadowRoot?.querySelectorAll<HTMLLIElement>('li.item');
+    if (renderedOptions) {
+      const theItems = [renderedOptions.item(0), renderedOptions.item(2)];
+      theItems.forEach(i => i.click());
+      await ble.updateComplete;
+      expect(theItems.length).to.equal(ble.selected.length);
+      theItems.forEach(i => {
+        expect(ble.selected).to.include(i.children[0]);
+      });
+    } else {
+      throw new Chai.AssertionError('Element failed to render shadow root');
+    }
+  });
+
+  it('fires event when select', async () => {
+    const options: string[] = ['Option 1', 'Option 2', 'Option 3'];
+    const selectIndexes = [0, 2];
+    const ble = await fixture<BasicListElement>(
+      html`<basic-list-element multiple label="List">
+        ${options.map(op => html`<p>${op}</p>`)}
+      </basic-list-element>`
+    );
+    const renderedOptions:
+      | NodeListOf<HTMLLIElement>
+      | undefined = ble.shadowRoot?.querySelectorAll<HTMLLIElement>('li.item');
+    if (renderedOptions) {
+      const theItems = selectIndexes.map(i => renderedOptions.item(i));
+      const capturedEvents = SpyOn<SelectionEvent>(
+        ble,
+        1000,
+        'selection-changed'
+      );
+      theItems.forEach(i => i.click());
+      await ble.updateComplete;
+      const events = (await capturedEvents).get('selection-changed');
+      if (events) {
+        expect(events.length).to.be.greaterThan(0);
+        const lastEvent = events.pop();
+        expect(lastEvent?.detail.selection)
+          .to.haveOwnProperty('index')
+          .to.deep.equal(selectIndexes);
+      } else throw new Chai.AssertionError('No events have been fired');
+    } else {
+      throw new Chai.AssertionError('Element failed to render shadow root');
+    }
+  });
+
+  xit('responds on keyboard navigation and selection');
 
   it('passes the a11y audit', async () => {
     const el = await fixture<BasicListElement>(

@@ -1,5 +1,5 @@
-export class SelectionEvent extends CustomEvent<{ selection: any }> {
-  constructor(selection: any) {
+export class SelectionEvent extends CustomEvent<{ selection: unknown }> {
+  constructor(selection: unknown) {
     super('selection-changed', {
       bubbles: true,
       composed: true,

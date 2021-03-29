@@ -42,7 +42,10 @@
     "parser": "@typescript-eslint/parser",
     "extends": [
       "@open-wc/eslint-config",
-      "eslint-config-prettier"
+      "plugin:@typescript-eslint/eslint-recommended",
+      "plugin:@typescript-eslint/recommended",
+      "eslint-config-prettier",
+      "eslint-config-prettier/@typescript-eslint"
     ],
     "plugins": [
       "@typescript-eslint"

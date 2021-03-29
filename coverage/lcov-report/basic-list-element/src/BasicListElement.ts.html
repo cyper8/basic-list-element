@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">75.58% </span>
+                <span class="strong">77.17% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>130/172</span>
+                <span class='fraction'>142/184</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">83.33% </span>
+                <span class="strong">88.89% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>5/6</span>
+                <span class='fraction'>8/9</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">40% </span>
+                <span class="strong">50% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>4/10</span>
+                <span class='fraction'>6/12</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">75.58% </span>
+                <span class="strong">77.17% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>130/172</span>
+                <span class='fraction'>142/184</span>
             </div>
         
             
@@ -229,7 +229,19 @@
 <a name='L170'></a><a href='#L170'>170</a>
 <a name='L171'></a><a href='#L171'>171</a>
 <a name='L172'></a><a href='#L172'>172</a>
-<a name='L173'></a><a href='#L173'>173</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L173'></a><a href='#L173'>173</a>
+<a name='L174'></a><a href='#L174'>174</a>
+<a name='L175'></a><a href='#L175'>175</a>
+<a name='L176'></a><a href='#L176'>176</a>
+<a name='L177'></a><a href='#L177'>177</a>
+<a name='L178'></a><a href='#L178'>178</a>
+<a name='L179'></a><a href='#L179'>179</a>
+<a name='L180'></a><a href='#L180'>180</a>
+<a name='L181'></a><a href='#L181'>181</a>
+<a name='L182'></a><a href='#L182'>182</a>
+<a name='L183'></a><a href='#L183'>183</a>
+<a name='L184'></a><a href='#L184'>184</a>
+<a name='L185'></a><a href='#L185'>185</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -314,6 +326,11 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -341,7 +358,6 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -389,6 +405,14 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -479,8 +503,13 @@ export class BasicListElement extends LitElement {
 <span class="cstat-no" title="statement not covered" >    return Array.from(this.__selectedIndexes);</span>
 <span class="cstat-no" title="statement not covered" >  }</span>
 &nbsp;
+  private get __slotChildren(): Element[] {
+    const slot = this.shadowRoot!.querySelector('slot');
+    return slot!.assignedElements();
+  }
+&nbsp;
   @internalProperty()
-  private readonly __items: ReadOnlyArray&lt;Element&gt; = [];
+  private __items: ReadOnlyArray&lt;Element&gt; = [];
 &nbsp;
   @internalProperty()
   private __selectedIndexes: Set&lt;number&gt; = new Set();
@@ -504,10 +533,9 @@ export class BasicListElement extends LitElement {
 <span class="cstat-no" title="statement not covered" >    }</span>
 <span class="cstat-no" title="statement not covered" >  }</span>
 &nbsp;
-  constructor() {
-    super();
+  private __moveLightToShadow(elements: Element[]) {
     // Populate items from light DOM
-    this.__items = new ReadOnlyArray(Array.from(this.children));
+    this.__items = new ReadOnlyArray(Array.from(elements));
     // Select the defaults
     this.defaultSelectionIndex.forEach(i =&gt; this.__selectedIndexes.add(i));
   }
@@ -570,6 +598,14 @@ export class BasicListElement extends LitElement {
             `
         )}
       &lt;/ul&gt;
+      &lt;slot
+        @slotchange="${() =&gt; {
+          const children = this.__slotChildren;
+          if (children &amp;&amp; children.length) {
+            this.__moveLightToShadow(children);
+          }
+        }}"
+      &gt;&lt;/slot&gt;
     `;
   }
 }
@@ -580,7 +616,7 @@ export class BasicListElement extends LitElement {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Sun Mar 28 2021 23:27:09 GMT+0300 (Eastern European Summer Time)
+                at Mon Mar 29 2021 10:21:11 GMT+0300 (Eastern European Summer Time)
             </div>
         </div>
         <script src="../../prettify.js"></script>

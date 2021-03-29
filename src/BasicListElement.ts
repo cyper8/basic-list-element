@@ -1,10 +1,18 @@
-import { html, css, LitElement, property, internalProperty } from 'lit-element';
+import {
+  html,
+  css,
+  LitElement,
+  property,
+  internalProperty,
+  CSSResult,
+  TemplateResult,
+} from 'lit-element';
 import { SelectionEvent } from './SelectionEvent.js';
 import { resetBoxes } from './reset-styles.js';
 import { ReadOnlyArray } from '../lib/ReadOnlyArray.js';
 
 export class BasicListElement extends LitElement {
-  static get styles() {
+  static get styles(): CSSResult[] {
     return [
       resetBoxes,
       css`
@@ -57,13 +65,13 @@ export class BasicListElement extends LitElement {
   }
 
   @property({ type: String })
-  label: string = '';
+  label = '';
 
   @property({ type: String })
-  name: string = '';
+  name = '';
 
   @property({ type: Boolean })
-  multiple: boolean = false;
+  multiple = false;
 
   @property({ type: Array })
   defaultSelectionIndex: number[] = [];
@@ -76,8 +84,13 @@ export class BasicListElement extends LitElement {
     return Array.from(this.__selectedIndexes);
   }
 
+  private get __slotChildren(): Element[] {
+    const slot = this.shadowRoot?.querySelector<HTMLSlotElement>('slot');
+    return slot ? slot.assignedElements() : [];
+  }
+
   @internalProperty()
-  private readonly __items: ReadOnlyArray<Element> = [];
+  private __items: ReadOnlyArray<Element> = [];
 
   @internalProperty()
   private __selectedIndexes: Set<number> = new Set();
@@ -101,15 +114,7 @@ export class BasicListElement extends LitElement {
     }
   }
 
-  constructor() {
-    super();
-    // Populate items from light DOM
-    this.__items = new ReadOnlyArray(Array.from(this.children));
-    // Select the defaults
-    this.defaultSelectionIndex.forEach(i => this.__selectedIndexes.add(i));
-  }
-
-  updated(props: Map<keyof BasicListElement, any>) {
+  updated(props: Map<keyof BasicListElement, unknown>): void {
     if (props.has('selectedIndexes')) {
       this.dispatchEvent(
         new SelectionEvent({
@@ -120,7 +125,7 @@ export class BasicListElement extends LitElement {
     }
   }
 
-  render() {
+  render(): TemplateResult {
     return html`
       <div id="listlabel" class="label">${this.label}</div>
       <ul
@@ -128,6 +133,7 @@ export class BasicListElement extends LitElement {
         title="options list"
         aria-labelledby="listlabel"
         role="listbox"
+        aria-multiselectable="${this.multiple}"
       >
         ${this.__items.map(
           (item, index) =>
@@ -167,6 +173,19 @@ export class BasicListElement extends LitElement {
             `
         )}
       </ul>
+      <slot
+        @slotchange="${() => {
+          const children = this.__slotChildren;
+          if (children && children.length) {
+            // Populate items from light DOM
+            this.__items = new ReadOnlyArray(Array.from(children));
+            // Select the defaults
+            this.defaultSelectionIndex.forEach(i =>
+              this.__selectedIndexes.add(i)
+            );
+          }
+        }}"
+      ></slot>
     `;
   }
 }
