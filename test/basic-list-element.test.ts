@@ -122,7 +122,7 @@ describe('BasicListElement', () => {
       const theItems = selectIndexes.map(i => renderedOptions.item(i));
       const capturedEvents = SpyOn<SelectionEvent>(
         ble,
-        1000,
+        500,
         'selection-changed'
       );
       theItems.forEach(i => i.click());
@@ -140,7 +140,76 @@ describe('BasicListElement', () => {
     }
   });
 
-  xit('responds on keyboard navigation and selection');
+  it('responds on keyboard navigation and selection', async () => {
+    const arrowDownEvent = new KeyboardEvent('keydown', {
+      key: 'ArrowDown',
+      bubbles: true,
+      cancelable: true,
+      composed: true,
+    });
+    const arrowUpEvent = new KeyboardEvent('keydown', {
+      key: 'ArrowUp',
+      bubbles: true,
+      cancelable: true,
+      composed: true,
+    });
+    const enterEvent = new KeyboardEvent('keydown', {
+      key: 'Enter',
+      bubbles: true,
+      cancelable: true,
+      composed: true,
+    });
+    const spaceEvent = new KeyboardEvent('keydown', {
+      key: ' ',
+      bubbles: true,
+      cancelable: true,
+      composed: true,
+    });
+
+    const options: string[] = ['Option 1', 'Option 2', 'Option 3'];
+    const ble = await fixture<BasicListElement>(
+      html`<basic-list-element label="List">
+        ${options.map(op => html`<p>${op}</p>`)}
+      </basic-list-element>`
+    );
+    const renderedOptions:
+      | NodeListOf<HTMLLIElement>
+      | undefined = ble.shadowRoot?.querySelectorAll<HTMLLIElement>('li.item');
+    if (renderedOptions) {
+      const theItem = renderedOptions.item(0);
+      theItem.focus();
+      await ble.updateComplete;
+      expect(
+        window.getComputedStyle(theItem).backgroundColor ===
+          'rgb(197, 243, 255)' ||
+          window.getComputedStyle(theItem).backgroundColor === '#c5f3ff'
+      ).to.be.true;
+      theItem.dispatchEvent(arrowDownEvent);
+      await ble.updateComplete;
+      expect(
+        window.getComputedStyle(renderedOptions.item(1)).backgroundColor ===
+          'rgb(197, 243, 255)' ||
+          window.getComputedStyle(renderedOptions.item(1)).backgroundColor ===
+            '#c5f3ff'
+      ).to.be.true;
+      renderedOptions.item(1).dispatchEvent(arrowUpEvent);
+      await ble.updateComplete;
+      expect(
+        window.getComputedStyle(renderedOptions.item(1)).backgroundColor
+      ).to.be.equal('rgba(0, 0, 0, 0)');
+      theItem.dispatchEvent(spaceEvent);
+      await ble.updateComplete;
+      expect(theItem).to.have.attribute('selected');
+      theItem.dispatchEvent(spaceEvent);
+      await ble.updateComplete;
+      expect(theItem.hasAttribute('selected')).to.be.false;
+      theItem.dispatchEvent(enterEvent);
+      await ble.updateComplete;
+      expect(theItem).to.have.attribute('selected');
+    } else {
+      throw new Chai.AssertionError('Element failed to render shadow root');
+    }
+  });
 
   it('passes the a11y audit', async () => {
     const el = await fixture<BasicListElement>(
