@@ -1,5 +1,5 @@
 import { fixture, expect } from '@open-wc/testing';
-import { html } from 'lit-html';
+import { html, TemplateResult } from 'lit-html';
 import { BasicListElement } from '../src/BasicListElement.js';
 import '../basic-list-element.js';
 import { SpyOn } from './lib/EventSpy.js';
@@ -41,6 +41,26 @@ describe('BasicListElement', () => {
       );
     } else {
       throw new Chai.AssertionError('Element failed to render shadow root');
+    }
+  });
+
+  it('replaces items, when slotted children change', async () => {
+    const varOptions: string[][] = [
+      ['Option 1', 'Option 2', 'Option 3'],
+      ['Option 4', 'Option 5'],
+    ];
+
+    const ble = async (items: TemplateResult | TemplateResult[]) =>
+      fixture<BasicListElement>(
+        html`<basic-list-element label="List">${items}</basic-list-element>`
+      );
+
+    for (const variant of varOptions) {
+      // eslint-disable-next-line no-await-in-loop
+      const list = await ble(variant.map(opt => html`<p>${opt}</p>`));
+      list.items.forEach((item, index) => {
+        expect(item.textContent).to.contain(variant[index]);
+      });
     }
   });
 

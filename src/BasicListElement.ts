@@ -155,8 +155,8 @@ export class BasicListElement extends LitElement {
     return slot ? slot.assignedElements() : [];
   }
 
-  @internalProperty()
-  private items: ReadOnlyArray<Element> = [];
+  @property({ type: Array })
+  items: ReadOnlyArray<Element> = [];
 
   @internalProperty()
   private __selectedIndexes: Set<number> = new Set();
