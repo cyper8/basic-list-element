@@ -1,8 +1,8 @@
 {
-  "name": "list-element",
+  "name": "basic-list-element",
   "version": "0.0.0",
-  "description": "Webcomponent list-element following open-wc recommendations",
-  "author": "list-element",
+  "description": "Webcomponent basic-list-element following open-wc recommendations",
+  "author": "Anton Yashchuk",
   "license": "MIT",
   "main": "dist/index.js",
   "module": "dist/index.js",
