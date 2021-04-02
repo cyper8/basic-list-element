@@ -11,7 +11,73 @@ import { SelectionEvent } from './SelectionEvent.js';
 import { resetBoxes } from './reset-styles.js';
 import { ReadOnlyArray } from '../lib/ReadOnlyArray.js';
 
+/**
+ * BasicListElement - web component based on LitElement class
+ * that takes LightDOM children and adds them as selectable options
+ * to list, maintained in ShadowDOM, tracks their selection status in
+ * single and multiple select modes
+ *
+ * @export
+ * @class BasicListElement
+ * @extends {LitElement}
+ *
+ * @field label - descriptive label for items in the list
+ * @type {String}
+ * @default ""
+ *
+ * @field name - short name of the variable to hold the selection result
+ * @type {String}
+ * @default ""
+ *
+ * @field multiple - multiple selection mode
+ * @type {Boolean}
+ * @default false
+ *
+ * @field defaultSelectionIndex - indexes of items, selected by default
+ * @attribute: 'default-selection-index'
+ * @type {number[]}
+ * @default []
+ *
+ * @readonly
+ * @field selected - those of retrieved via LightDOM elements,
+ *                   which are selected
+ * @type {Element[]}
+ *
+ * @readonly
+ * @field selectedIndexes - the same as previous, but indexes
+ * @type {number[]}
+ *
+ */
 export class BasicListElement extends LitElement {
+  /**
+   * ShadowDOM styles define custom style parameters:
+   *
+   * @param ```--ble-main-color```
+   * @default '#777'
+   *
+   * @param ```--ble-secondary-color```
+   * @default '#f9f9f9'
+   *
+   * @param ```--ble-bg-color```
+   * @default 'transparent'
+   *
+   * @param ```--ble-text-color```
+   * @default ---ble-main-color
+   *
+   * @param ```--ble-border-color```
+   * @default ---ble-main-color
+   *
+   * @param ```--ble-selection-color```
+   * @default '#00ccff'
+   *
+   * @param ```--ble-focus-color```
+   * @default '#c5f3ff'
+   *
+   * @readonly
+   * @static
+   * @type {CSSResult[]}
+   * @memberof BasicListElement
+   */
   static get styles(): CSSResult[] {
     return [
       resetBoxes,
@@ -73,7 +139,7 @@ export class BasicListElement extends LitElement {
   @property({ type: Boolean })
   multiple = false;
 
-  @property({ type: Array })
+  @property({ type: Array, attribute: 'default-selection-index' })
   defaultSelectionIndex: number[] = [];
 
   get selected(): Element[] {
@@ -84,7 +150,7 @@ export class BasicListElement extends LitElement {
     return Array.from(this.__selectedIndexes);
   }
 
-  private get __slotChildren(): Element[] {
+  private get slotChildren(): Element[] {
     const slot = this.shadowRoot?.querySelector<HTMLSlotElement>('slot');
     return slot ? slot.assignedElements() : [];
   }
@@ -122,6 +188,10 @@ export class BasicListElement extends LitElement {
           items: this.selected,
         })
       );
+    }
+    if (props.has('defaultSelectionIndex')) {
+      this.__selectedIndexes = new Set();
+      this.defaultSelectionIndex.forEach(i => this.selectItem(i));
     }
   }
 
@@ -175,14 +245,14 @@ export class BasicListElement extends LitElement {
       </ul>
       <slot
         @slotchange="${() => {
-          const children = this.__slotChildren;
+          const children = this.slotChildren;
           if (children && children.length) {
             // Populate items from light DOM
             this.items = new ReadOnlyArray(Array.from(children));
+            // clear selection
+            this.__selectedIndexes = new Set();
             // Select the defaults
-            this.defaultSelectionIndex.forEach(i =>
-              this.__selectedIndexes.add(i)
-            );
+            this.defaultSelectionIndex.forEach(i => this.selectItem(i));
           }
         }}"
       ></slot>

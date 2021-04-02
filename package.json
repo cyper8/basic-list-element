@@ -15,7 +15,7 @@
     "test": "npm run build && wtr --coverage",
     "test:watch": "npm run build && concurrently -k -r \"tsc --watch --preserveWatchOutput\" \"wtr --watch\"",
     "storybook": "npm run build && concurrently -k -r \"tsc --watch --preserveWatchOutput\" \"wds -c .storybook/server.mjs\"",
-    "storybook:build": "npm run build && build-storybook"
+    "storybook:build": "npm run build && build-storybook --output-dir docs"
   },
   "dependencies": {
     "lit-element": "^2.4.0",
