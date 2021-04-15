@@ -1,5 +1,20 @@
-export declare class SelectionEvent extends CustomEvent<{
-    selection: unknown;
+export interface BLESelectionChangedEvent extends CustomEvent<{
+    items: Element[];
+    index: number[];
 }> {
-    constructor(selection: unknown);
+    type: 'selection-changed';
+    detail: {
+        items: Element[];
+        index: number[];
+    };
+}
+export declare class SelectionChangedEvent extends CustomEvent<{
+    items: Element[];
+    index: number[];
+}> implements BLESelectionChangedEvent {
+    get type(): 'selection-changed';
+    constructor(selection: {
+        items: Element[];
+        index: number[];
+    }, options?: CustomEventInit);
 }

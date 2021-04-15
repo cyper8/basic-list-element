@@ -30,6 +30,7 @@
     "@web/dev-server-storybook": "^0.3.5",
     "@web/test-runner": "^0.12.17",
     "concurrently": "^5.3.0",
+    "dom-event-spy": "github:cyper8/dom-event-spy",
     "eslint": "^7.22.0",
     "eslint-config-prettier": "^7.2.0",
     "husky": "^4.3.8",

@@ -7,7 +7,7 @@ import {
   CSSResult,
   TemplateResult,
 } from 'lit-element';
-import { SelectionEvent } from './SelectionEvent.js';
+import { SelectionChangedEvent } from './SelectionEvent.js';
 import { resetBoxes } from './reset-styles.js';
 import { ReadOnlyArray } from '../lib/ReadOnlyArray.js';
 
@@ -53,7 +53,7 @@ export class BasicListElement extends LitElement {
    * ShadowDOM styles define custom style parameters:
    *
    * @param ```--ble-main-color```
-   * @default '#777'
+   * @default '#555'
    *
    * @param ```--ble-secondary-color```
    * @default '#f9f9f9'
@@ -83,7 +83,7 @@ export class BasicListElement extends LitElement {
       resetBoxes,
       css`
         :host {
-          --ble-main-color: #777;
+          --ble-main-color: #555;
           --ble-secondary-color: #f9f9f9;
           --ble-bg-color: transparent;
           --ble-text-color: var(--ble-main-color);
@@ -183,7 +183,7 @@ export class BasicListElement extends LitElement {
   updated(props: Map<keyof BasicListElement, unknown>): void {
     if (props.has('selectedIndexes')) {
       this.dispatchEvent(
-        new SelectionEvent({
+        new SelectionChangedEvent({
           index: this.selectedIndexes,
           items: this.selected,
         })

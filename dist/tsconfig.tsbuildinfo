@@ -142,8 +142,8 @@
         "affectsGlobalScope": true
       },
       "../node_modules/tslib/tslib.d.ts": {
-        "version": "55d7868222288a4054166fecbfbaeee46dd3b1b58e4a118e40e9c8c13a9fbe84",
-        "signature": "55d7868222288a4054166fecbfbaeee46dd3b1b58e4a118e40e9c8c13a9fbe84",
+        "version": "ea7abf23498b7c214c67fc14f22f41983fbb7bf7c4826c7fcdef542b2022545f",
+        "signature": "ea7abf23498b7c214c67fc14f22f41983fbb7bf7c4826c7fcdef542b2022545f",
         "affectsGlobalScope": false
       },
       "../node_modules/lit-html/lib/part.d.ts": {
@@ -237,8 +237,8 @@
         "affectsGlobalScope": true
       },
       "../src/SelectionEvent.ts": {
-        "version": "0431348bbc9b8190fadada8eb1094a2085f6803bd1f826db2f6fd890ff27fb5b",
-        "signature": "07ed8650099402dbeec315ca7f1686a969d3fadccf9a396171148ac7e16c418e",
+        "version": "28f7ff13b62403b8e95fc035bb2a38f269bf0e020d6115a9f6d6d0ba9f895126",
+        "signature": "780fc74b1d3b61e463618124f7db74d13fb2cf793f71e9762f531a32cd8bc38d",
         "affectsGlobalScope": false
       },
       "../src/reset-styles.ts": {
@@ -247,13 +247,13 @@
         "affectsGlobalScope": false
       },
       "../lib/ReadOnlyArray.ts": {
-        "version": "eaaad9d93d53e9ee62e51180de8b4b906e3e432b96accf29626fa7aa0197b73d",
+        "version": "a105e72d1ce9b61620c0b6412f4d257b47186cc536d1b92308b6b1e6138671c8",
         "signature": "5a20bbccb5280653a57d4225e587b00ba6430789f13195e4467666b6746d9fe6",
         "affectsGlobalScope": false
       },
       "../src/BasicListElement.ts": {
-        "version": "78559a13f75f36a746d9dbe6e6a89b98a45958233acec113db467da2f1891f80",
-        "signature": "7f42dbbf04870cbaeab44752806f79b6f5a3853b0004e7a2fe44a2606aa9c8d5",
+        "version": "10600e9ed0b57d031cad332e4c6a4745a4be49b2cb7ee06d5c6c5288fd6dcaa4",
+        "signature": "6997d1e5fd0fc0647e7e7aa2b9dd866ab9c85bcae709f6c1afb6b961feccad21",
         "affectsGlobalScope": false
       },
       "../basic-list-element.ts": {
@@ -272,8 +272,8 @@
         "affectsGlobalScope": false
       },
       "../node_modules/@types/chai/index.d.ts": {
-        "version": "267813ae499a9c070ea61bca2d235e31e785181d967e4461719cbcc78a35abfe",
-        "signature": "267813ae499a9c070ea61bca2d235e31e785181d967e4461719cbcc78a35abfe",
+        "version": "e9cf450600c496a87ab96d288157b79be6c193e8623bd93553d5d64755940dea",
+        "signature": "e9cf450600c496a87ab96d288157b79be6c193e8623bd93553d5d64755940dea",
         "affectsGlobalScope": true
       },
       "../node_modules/@open-wc/semantic-dom-diff/get-diffable-html.d.ts": {
@@ -316,14 +316,14 @@
         "signature": "d95d76d79a0351572ec5b1a6cc1e5c4bce1be82eedeed7278d6f31ea1059fa69",
         "affectsGlobalScope": true
       },
-      "../node_modules/@types/sinonjs__fake-timers/index.d.ts": {
-        "version": "558a9770503071d5a6fc6c596f7230bb79f2d034ced4a205bd1ebcad3b5879ec",
-        "signature": "558a9770503071d5a6fc6c596f7230bb79f2d034ced4a205bd1ebcad3b5879ec",
+      "../node_modules/@sinonjs/fake-timers/types/fake-timers-src.d.ts": {
+        "version": "b79a450a5233f10fa43da81c35a17f8eec71fea394d0ff91620819e0af513fe9",
+        "signature": "b79a450a5233f10fa43da81c35a17f8eec71fea394d0ff91620819e0af513fe9",
         "affectsGlobalScope": false
       },
       "../node_modules/@types/sinon/index.d.ts": {
-        "version": "9d92b037978bb9525bc4b673ebddd443277542e010c0aef019c03a170ccdaa73",
-        "signature": "9d92b037978bb9525bc4b673ebddd443277542e010c0aef019c03a170ccdaa73",
+        "version": "fc8a86547dc1da127bad3a5c71137b9e8bb9de3c91df12869dd52e3ff2346e61",
+        "signature": "fc8a86547dc1da127bad3a5c71137b9e8bb9de3c91df12869dd52e3ff2346e61",
         "affectsGlobalScope": false
       },
       "../node_modules/@types/sinon-chai/index.d.ts": {
@@ -406,24 +406,29 @@
         "signature": "d2173e08898108c0aaa6dbfed27725b4a71f5817153800c86f03fa06456a2fc7",
         "affectsGlobalScope": false
       },
-      "../test/lib/EventSpy.ts": {
-        "version": "8e61d0f3489ff2f1b08039a068fce0bfa4622a7e9042a1193976af569045705c",
-        "signature": "ac4c2d8902887a2848d8d91cbcdd1646c3a929db49d2390e80760b8eccbedb40",
+      "../node_modules/dom-event-spy/dist/src/EventSpy.d.ts": {
+        "version": "cc2882d70887504fc623d7da6a77af9253bb4eca7890ae6e222e04ec67e7d3f0",
+        "signature": "cc2882d70887504fc623d7da6a77af9253bb4eca7890ae6e222e04ec67e7d3f0",
+        "affectsGlobalScope": false
+      },
+      "../node_modules/dom-event-spy/dist/index.d.ts": {
+        "version": "c9c57b0fa3f20840ff6b7821abdced48c78c36b0d703bba249989aeb25f39249",
+        "signature": "c9c57b0fa3f20840ff6b7821abdced48c78c36b0d703bba249989aeb25f39249",
         "affectsGlobalScope": false
       },
       "../test/basic-list-element.test.ts": {
-        "version": "5e0d26fc8790458f0124beb7accebce3a5bdc4cccb29ae47453450420d3eea1d",
+        "version": "e0a8e9f1946dc1fb30e6931f766b3e836b50f3dc651e1d3744ed28f14277826d",
         "signature": "c2f20c4fbe5344a176d1f6261d9bbaacaf6c796e703edcfef4474ef5dcec8301",
         "affectsGlobalScope": false
       },
       "../node_modules/@types/node/globals.d.ts": {
-        "version": "25b4a0c4fab47c373ee49df4c239826ee3430019fc0c1b5e59edc3e398b7468d",
-        "signature": "25b4a0c4fab47c373ee49df4c239826ee3430019fc0c1b5e59edc3e398b7468d",
+        "version": "583b4bd4e441916be4bf152ee323c4ffa6e178fd25df2ee2215ef05c7feb5ad4",
+        "signature": "583b4bd4e441916be4bf152ee323c4ffa6e178fd25df2ee2215ef05c7feb5ad4",
         "affectsGlobalScope": true
       },
       "../node_modules/@types/node/async_hooks.d.ts": {
-        "version": "7698983d080f951eaf53ff81e5c7bd61abc02e4a1a21266f1bd79ea85c0dc641",
-        "signature": "7698983d080f951eaf53ff81e5c7bd61abc02e4a1a21266f1bd79ea85c0dc641",
+        "version": "d20f08527645f62facb2d66c2b7bd31ea964b59c897d00bddb1efe8c13890b72",
+        "signature": "d20f08527645f62facb2d66c2b7bd31ea964b59c897d00bddb1efe8c13890b72",
         "affectsGlobalScope": false
       },
       "../node_modules/@types/node/buffer.d.ts": {
@@ -452,8 +457,8 @@
         "affectsGlobalScope": false
       },
       "../node_modules/@types/node/crypto.d.ts": {
-        "version": "64813a6beff756b9e3f3c06d1b648d55e7c90af2b55c64d13a69d6c7f573643d",
-        "signature": "64813a6beff756b9e3f3c06d1b648d55e7c90af2b55c64d13a69d6c7f573643d",
+        "version": "d53b352a01645c470a0d8c31bf290ba791fc28ade0ce187a4a50f5c2f826f75e",
+        "signature": "d53b352a01645c470a0d8c31bf290ba791fc28ade0ce187a4a50f5c2f826f75e",
         "affectsGlobalScope": false
       },
       "../node_modules/@types/node/dgram.d.ts": {
@@ -532,8 +537,8 @@
         "affectsGlobalScope": false
       },
       "../node_modules/@types/node/process.d.ts": {
-        "version": "06c004006016a51c4d1855527a523562c329dc44c473931c65f10373281f730e",
-        "signature": "06c004006016a51c4d1855527a523562c329dc44c473931c65f10373281f730e",
+        "version": "fcb95c45150c717706119f12f2a3639d51baa041cd5bb441eb8501e04b52c501",
+        "signature": "fcb95c45150c717706119f12f2a3639d51baa041cd5bb441eb8501e04b52c501",
         "affectsGlobalScope": true
       },
       "../node_modules/@types/node/punycode.d.ts": {
@@ -557,8 +562,8 @@
         "affectsGlobalScope": false
       },
       "../node_modules/@types/node/stream.d.ts": {
-        "version": "d84300d886b45a198c346158e4ff7ae361cc7bc1c3deab44afb3db7de56b5d25",
-        "signature": "d84300d886b45a198c346158e4ff7ae361cc7bc1c3deab44afb3db7de56b5d25",
+        "version": "74594bec8a9fa1a2cd40268f9ab95d0c44b6080345da6e8b913939d19b1d57ae",
+        "signature": "74594bec8a9fa1a2cd40268f9ab95d0c44b6080345da6e8b913939d19b1d57ae",
         "affectsGlobalScope": false
       },
       "../node_modules/@types/node/string_decoder.d.ts": {
@@ -602,8 +607,8 @@
         "affectsGlobalScope": false
       },
       "../node_modules/@types/node/vm.d.ts": {
-        "version": "66679e8ffbf1fddef1796c60757e54e6e6551dd9823f75ef2f80176473bdaaff",
-        "signature": "66679e8ffbf1fddef1796c60757e54e6e6551dd9823f75ef2f80176473bdaaff",
+        "version": "141a943e5690105898a67537a470f70b56d0e183441b56051d929e902376b7b2",
+        "signature": "141a943e5690105898a67537a470f70b56d0e183441b56051d929e902376b7b2",
         "affectsGlobalScope": false
       },
       "../node_modules/@types/node/worker_threads.d.ts": {
@@ -832,8 +837,8 @@
         "affectsGlobalScope": false
       },
       "../node_modules/@types/ws/index.d.ts": {
-        "version": "c6e185824cae1ddea6706f4256d4bd499e8e9a37ed10689946c22984d68798c3",
-        "signature": "c6e185824cae1ddea6706f4256d4bd499e8e9a37ed10689946c22984d68798c3",
+        "version": "c42aa870da00bf8aa719aec0c8dd912ae930d74b1451ad0e49f659f1e61a47dc",
+        "signature": "c42aa870da00bf8aa719aec0c8dd912ae930d74b1451ad0e49f659f1e61a47dc",
         "affectsGlobalScope": false
       },
       "../node_modules/@types/yauzl/index.d.ts": {
@@ -1079,6 +1084,11 @@
       "../../../node_modules/@types/react-textarea-autosize/index.d.ts": {
         "version": "654bd884851f74a93fc2165c9d3d7ec9a6346c5c4ca8a00caa49868c72ad2363",
         "signature": "654bd884851f74a93fc2165c9d3d7ec9a6346c5c4ca8a00caa49868c72ad2363",
+        "affectsGlobalScope": false
+      },
+      "../../../node_modules/@types/sinonjs__fake-timers/index.d.ts": {
+        "version": "558a9770503071d5a6fc6c596f7230bb79f2d034ced4a205bd1ebcad3b5879ec",
+        "signature": "558a9770503071d5a6fc6c596f7230bb79f2d034ced4a205bd1ebcad3b5879ec",
         "affectsGlobalScope": false
       },
       "../../../node_modules/@types/stack-utils/index.d.ts": {
@@ -1648,7 +1658,7 @@
         "../node_modules/@types/sinon/index.d.ts"
       ],
       "../node_modules/@types/sinon/index.d.ts": [
-        "../node_modules/@types/sinonjs__fake-timers/index.d.ts"
+        "../node_modules/@sinonjs/fake-timers/types/fake-timers-src.d.ts"
       ],
       "../node_modules/@types/ws/index.d.ts": [
         "../node_modules/@types/node/events.d.ts",
@@ -1674,6 +1684,9 @@
       ],
       "../node_modules/chai-a11y-axe/src/accessible.d.ts": [
         "../node_modules/chai-a11y-axe/chai-a11y-axe-plugin.d.ts"
+      ],
+      "../node_modules/dom-event-spy/dist/index.d.ts": [
+        "../node_modules/dom-event-spy/dist/src/EventSpy.d.ts"
       ],
       "../node_modules/lit-element/lib/decorators.d.ts": [
         "../node_modules/lit-element/lib/updating-element.d.ts"
@@ -1767,14 +1780,11 @@
       "../test/basic-list-element.test.ts": [
         "../basic-list-element.ts",
         "../node_modules/@open-wc/testing/index.d.ts",
+        "../node_modules/dom-event-spy/dist/index.d.ts",
         "../node_modules/lit-html/lit-html.d.ts",
         "../node_modules/tslib/tslib.d.ts",
         "../src/BasicListElement.ts",
-        "../src/SelectionEvent.ts",
-        "../test/lib/EventSpy.ts"
-      ],
-      "../test/lib/EventSpy.ts": [
-        "../node_modules/tslib/tslib.d.ts"
+        "../src/SelectionEvent.ts"
       ]
     },
     "exportedModulesMap": {
@@ -2293,7 +2303,7 @@
         "../node_modules/@types/sinon/index.d.ts"
       ],
       "../node_modules/@types/sinon/index.d.ts": [
-        "../node_modules/@types/sinonjs__fake-timers/index.d.ts"
+        "../node_modules/@sinonjs/fake-timers/types/fake-timers-src.d.ts"
       ],
       "../node_modules/@types/ws/index.d.ts": [
         "../node_modules/@types/node/events.d.ts",
@@ -2319,6 +2329,9 @@
       ],
       "../node_modules/chai-a11y-axe/src/accessible.d.ts": [
         "../node_modules/chai-a11y-axe/chai-a11y-axe-plugin.d.ts"
+      ],
+      "../node_modules/dom-event-spy/dist/index.d.ts": [
+        "../node_modules/dom-event-spy/dist/src/EventSpy.d.ts"
       ],
       "../node_modules/lit-element/lib/decorators.d.ts": [
         "../node_modules/lit-element/lib/updating-element.d.ts"
@@ -2450,6 +2463,7 @@
       "../../../node_modules/@types/react/global.d.ts",
       "../../../node_modules/@types/react/index.d.ts",
       "../../../node_modules/@types/relateurl/index.d.ts",
+      "../../../node_modules/@types/sinonjs__fake-timers/index.d.ts",
       "../../../node_modules/@types/stack-utils/index.d.ts",
       "../../../node_modules/@types/uglify-js/index.d.ts",
       "../../../node_modules/@types/uglify-js/node_modules/source-map/source-map.d.ts",
@@ -2483,6 +2497,7 @@
       "../node_modules/@open-wc/testing-helpers/types/src/stringFixture.d.ts",
       "../node_modules/@open-wc/testing/index.d.ts",
       "../node_modules/@open-wc/testing/register-chai-plugins.d.ts",
+      "../node_modules/@sinonjs/fake-timers/types/fake-timers-src.d.ts",
       "../node_modules/@types/accepts/index.d.ts",
       "../node_modules/@types/body-parser/index.d.ts",
       "../node_modules/@types/chai-dom/index.d.ts",
@@ -2565,7 +2580,6 @@
       "../node_modules/@types/serve-static/index.d.ts",
       "../node_modules/@types/sinon-chai/index.d.ts",
       "../node_modules/@types/sinon/index.d.ts",
-      "../node_modules/@types/sinonjs__fake-timers/index.d.ts",
       "../node_modules/@types/unist/index.d.ts",
       "../node_modules/@types/uuid/index.d.ts",
       "../node_modules/@types/ws/index.d.ts",
@@ -2573,6 +2587,8 @@
       "../node_modules/chai-a11y-axe/chai-a11y-axe-plugin.d.ts",
       "../node_modules/chai-a11y-axe/index.d.ts",
       "../node_modules/chai-a11y-axe/src/accessible.d.ts",
+      "../node_modules/dom-event-spy/dist/index.d.ts",
+      "../node_modules/dom-event-spy/dist/src/EventSpy.d.ts",
       "../node_modules/lit-element/lib/css-tag.d.ts",
       "../node_modules/lit-element/lib/decorators.d.ts",
       "../node_modules/lit-element/lib/updating-element.d.ts",
@@ -2624,9 +2640,8 @@
       "../src/SelectionEvent.ts",
       "../src/reset-styles.ts",
       "../stories/index.stories.ts",
-      "../test/basic-list-element.test.ts",
-      "../test/lib/EventSpy.ts"
+      "../test/basic-list-element.test.ts"
     ]
   },
-  "version": "4.2.3"
+  "version": "4.2.4"
 }

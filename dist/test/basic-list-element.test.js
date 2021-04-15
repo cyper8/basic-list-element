@@ -1,7 +1,7 @@
 import { fixture, expect } from '@open-wc/testing';
 import { html } from 'lit-html';
+import { SpyOn } from 'dom-event-spy';
 import '../basic-list-element.js';
-import { SpyOn } from './lib/EventSpy.js';
 describe('BasicListElement', () => {
     it('can have label', async () => {
         var _a;
@@ -115,7 +115,7 @@ describe('BasicListElement', () => {
             if (events) {
                 expect(events.length).to.be.greaterThan(0);
                 const lastEvent = events.pop();
-                expect(lastEvent === null || lastEvent === void 0 ? void 0 : lastEvent.detail.selection)
+                expect(lastEvent === null || lastEvent === void 0 ? void 0 : lastEvent.detail)
                     .to.haveOwnProperty('index')
                     .to.deep.equal(selectIndexes);
             }
@@ -188,8 +188,11 @@ describe('BasicListElement', () => {
         }
     });
     it('passes the a11y audit', async () => {
-        const el = await fixture(html `<basic-list-element></basic-list-element>`);
-        await expect(el).shadowDom.to.be.accessible();
+        const options = ['Option 1', 'Option 2', 'Option 3'];
+        const ble = await fixture(html `<basic-list-element label="List">
+        ${options.map(op => html `<p>${op}</p>`)}
+      </basic-list-element>`);
+        await expect(ble).shadowDom.to.be.accessible();
     });
 });
 //# sourceMappingURL=basic-list-element.test.js.map

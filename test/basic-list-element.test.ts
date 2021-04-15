@@ -1,9 +1,11 @@
 import { fixture, expect } from '@open-wc/testing';
 import { html, TemplateResult } from 'lit-html';
+import { SpyOn } from 'dom-event-spy';
+
 import { BasicListElement } from '../src/BasicListElement.js';
 import '../basic-list-element.js';
-import { SpyOn } from './lib/EventSpy.js';
-import { SelectionEvent } from '../src/SelectionEvent.js';
+
+import { SelectionChangedEvent } from '../src/SelectionEvent.js';
 
 describe('BasicListElement', () => {
   it('can have label', async () => {
@@ -140,7 +142,7 @@ describe('BasicListElement', () => {
       | undefined = ble.shadowRoot?.querySelectorAll<HTMLLIElement>('li.item');
     if (renderedOptions) {
       const theItems = selectIndexes.map(i => renderedOptions.item(i));
-      const capturedEvents = SpyOn<SelectionEvent>(
+      const capturedEvents = SpyOn<SelectionChangedEvent>(
         ble,
         500,
         'selection-changed'
@@ -151,7 +153,7 @@ describe('BasicListElement', () => {
       if (events) {
         expect(events.length).to.be.greaterThan(0);
         const lastEvent = events.pop();
-        expect(lastEvent?.detail.selection)
+        expect(lastEvent?.detail)
           .to.haveOwnProperty('index')
           .to.deep.equal(selectIndexes);
       } else throw new Chai.AssertionError('No events have been fired');
@@ -232,10 +234,13 @@ describe('BasicListElement', () => {
   });
 
   it('passes the a11y audit', async () => {
-    const el = await fixture<BasicListElement>(
-      html`<basic-list-element></basic-list-element>`
+    const options: string[] = ['Option 1', 'Option 2', 'Option 3'];
+    const ble = await fixture<BasicListElement>(
+      html`<basic-list-element label="List">
+        ${options.map(op => html`<p>${op}</p>`)}
+      </basic-list-element>`
     );
 
-    await expect(el).shadowDom.to.be.accessible();
+    await expect(ble).shadowDom.to.be.accessible();
   });
 });

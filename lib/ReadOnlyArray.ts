@@ -5,7 +5,7 @@ export class ReadOnlyArray<T> extends Array<T> {
     Object.freeze(this);
   }
 
-  static get [Symbol.species]() {
+  static get [Symbol.species](): ArrayConstructor {
     return Array;
   }
 }

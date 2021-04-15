@@ -1,11 +1,15 @@
-export class SelectionEvent extends CustomEvent {
-    constructor(selection) {
+export class SelectionChangedEvent extends CustomEvent {
+    // eslint-disable-next-line class-methods-use-this
+    get type() {
+        return 'selection-changed';
+    }
+    constructor(selection, options = {
+        bubbles: true,
+        composed: true,
+    }) {
         super('selection-changed', {
-            bubbles: true,
-            composed: true,
-            detail: {
-                selection,
-            },
+            ...options,
+            detail: selection,
         });
     }
 }

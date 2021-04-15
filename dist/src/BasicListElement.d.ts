@@ -42,7 +42,7 @@ export declare class BasicListElement extends LitElement {
      * ShadowDOM styles define custom style parameters:
      *
      * @param ```--ble-main-color```
-     * @default '#777'
+     * @default '#555'
      *
      * @param ```--ble-secondary-color```
      * @default '#f9f9f9'
