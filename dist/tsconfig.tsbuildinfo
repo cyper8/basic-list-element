@@ -786,21 +786,6 @@
         "signature": "5006668996956580886022c05108e32c742823e1b5652aff7914917233731518",
         "affectsGlobalScope": false
       },
-      "../../../node_modules/querystring/decode.d.ts": {
-        "version": "ad7e61eca7f2f8bf47e72695f9f6663b75e41d87ef49abdb17c0cb843862f8aa",
-        "signature": "ad7e61eca7f2f8bf47e72695f9f6663b75e41d87ef49abdb17c0cb843862f8aa",
-        "affectsGlobalScope": false
-      },
-      "../../../node_modules/querystring/encode.d.ts": {
-        "version": "ecba2e44af95b0599c269a92628cec22e752868bce37396740deb51a5c547a26",
-        "signature": "ecba2e44af95b0599c269a92628cec22e752868bce37396740deb51a5c547a26",
-        "affectsGlobalScope": false
-      },
-      "../../../node_modules/querystring/index.d.ts": {
-        "version": "46a9fb41a8f3bc7539eeebc15a6e04b9e55d7537a081615ad3614220d34c3e0f",
-        "signature": "46a9fb41a8f3bc7539eeebc15a6e04b9e55d7537a081615ad3614220d34c3e0f",
-        "affectsGlobalScope": false
-      },
       "../node_modules/@types/koa/index.d.ts": {
         "version": "d6d4d8896885d268b2f15bbbf4cfffeb04208d37ebc74b2bdde2bb279a147ca4",
         "signature": "d6d4d8896885d268b2f15bbbf4cfffeb04208d37ebc74b2bdde2bb279a147ca4",
@@ -886,16 +871,6 @@
         "signature": "ceb107464ee79c8f089bf081da11a898b8c06bfc8ac5d6b896957592d568d8e8",
         "affectsGlobalScope": false
       },
-      "../../../node_modules/@types/clean-css/node_modules/source-map/source-map.d.ts": {
-        "version": "2887592574fcdfd087647c539dcb0fbe5af2521270dad4a37f9d17c16190d579",
-        "signature": "2887592574fcdfd087647c539dcb0fbe5af2521270dad4a37f9d17c16190d579",
-        "affectsGlobalScope": false
-      },
-      "../../../node_modules/@types/clean-css/index.d.ts": {
-        "version": "3f2a61d846a4087220683e8223cad731b1db37fa7083f0fa8c0449663b87cdfb",
-        "signature": "3f2a61d846a4087220683e8223cad731b1db37fa7083f0fa8c0449663b87cdfb",
-        "affectsGlobalScope": false
-      },
       "../../../node_modules/@types/command-line-usage/index.d.ts": {
         "version": "65fa9dd7434e469671c4fb384cc9c610ad8ffc572351adec3e3d46f36a68f358",
         "signature": "65fa9dd7434e469671c4fb384cc9c610ad8ffc572351adec3e3d46f36a68f358",
@@ -910,31 +885,6 @@
         "version": "7949f1133bcca7581df8fd7a9be3b4f407c4c80edbf21957ea00e7f6cbad0e02",
         "signature": "7949f1133bcca7581df8fd7a9be3b4f407c4c80edbf21957ea00e7f6cbad0e02",
         "affectsGlobalScope": true
-      },
-      "../../../node_modules/@types/uglify-js/node_modules/source-map/source-map.d.ts": {
-        "version": "2887592574fcdfd087647c539dcb0fbe5af2521270dad4a37f9d17c16190d579",
-        "signature": "2887592574fcdfd087647c539dcb0fbe5af2521270dad4a37f9d17c16190d579",
-        "affectsGlobalScope": false
-      },
-      "../../../node_modules/@types/uglify-js/index.d.ts": {
-        "version": "bee79f5862fe1278d2ba275298862bce3f7abf1e59d9c669c4b9a4b2bba96956",
-        "signature": "bee79f5862fe1278d2ba275298862bce3f7abf1e59d9c669c4b9a4b2bba96956",
-        "affectsGlobalScope": false
-      },
-      "../../../node_modules/@types/relateurl/index.d.ts": {
-        "version": "a523644fe1d30f36465118be107642c78c36afe0d885f93eae399b3c44dc8fe9",
-        "signature": "a523644fe1d30f36465118be107642c78c36afe0d885f93eae399b3c44dc8fe9",
-        "affectsGlobalScope": false
-      },
-      "../../../node_modules/@types/html-minifier/index.d.ts": {
-        "version": "3f6bff86e78e065dad71ca8e395824703f56977f7309139127e58718d7915410",
-        "signature": "3f6bff86e78e065dad71ca8e395824703f56977f7309139127e58718d7915410",
-        "affectsGlobalScope": false
-      },
-      "../../../node_modules/@types/is-function/index.d.ts": {
-        "version": "11ef35fa1e8aef8229ce6b62ac1a6a0761d1d4bb4de1538bce6d10762a919139",
-        "signature": "11ef35fa1e8aef8229ce6b62ac1a6a0761d1d4bb4de1538bce6d10762a919139",
-        "affectsGlobalScope": false
       },
       "../../../node_modules/log4js/types/log4js.d.ts": {
         "version": "753391328df8a591c71aea03b21aae20fddfda47778d5dcbb0a0b24a44b76d1b",
@@ -1051,64 +1001,14 @@
         "signature": "a0b27b55228349ea85cecd9479ace1009697af44b66527f30526a1539d4e78ea",
         "affectsGlobalScope": false
       },
-      "../../../node_modules/@types/prop-types/index.d.ts": {
-        "version": "a7e32dcb90bf0c1b7a1e4ac89b0f7747cbcba25e7beddc1ebf17be1e161842ad",
-        "signature": "a7e32dcb90bf0c1b7a1e4ac89b0f7747cbcba25e7beddc1ebf17be1e161842ad",
-        "affectsGlobalScope": false
-      },
-      "../../../node_modules/@types/react/global.d.ts": {
-        "version": "ecf78e637f710f340ec08d5d92b3f31b134a46a4fcf2e758690d8c46ce62cba6",
-        "signature": "ecf78e637f710f340ec08d5d92b3f31b134a46a4fcf2e758690d8c46ce62cba6",
-        "affectsGlobalScope": true
-      },
-      "../../../node_modules/csstype/index.d.ts": {
-        "version": "0a6f28e1d77b99b0ef7da2f0bf50f301ea8a7eb7b4f573e458e725452a477bd2",
-        "signature": "0a6f28e1d77b99b0ef7da2f0bf50f301ea8a7eb7b4f573e458e725452a477bd2",
-        "affectsGlobalScope": false
-      },
-      "../../../node_modules/@types/react/index.d.ts": {
-        "version": "9692a141afe8f30a5542189ffceb1a043f3d1fbaf0e07d28a8e9ac6d32c4cb01",
-        "signature": "9692a141afe8f30a5542189ffceb1a043f3d1fbaf0e07d28a8e9ac6d32c4cb01",
-        "affectsGlobalScope": true
-      },
-      "../../../node_modules/@types/reach__router/index.d.ts": {
-        "version": "3b280b52be6f8727fbdae05a2ad2c053dac5be97c42a5caa1740e64a2321e935",
-        "signature": "3b280b52be6f8727fbdae05a2ad2c053dac5be97c42a5caa1740e64a2321e935",
-        "affectsGlobalScope": false
-      },
-      "../../../node_modules/@types/react-syntax-highlighter/index.d.ts": {
-        "version": "c6d8434b402c2a47c6d04d59030d9aad99d7fd02eebbb89d1ed5adb8d301299a",
-        "signature": "c6d8434b402c2a47c6d04d59030d9aad99d7fd02eebbb89d1ed5adb8d301299a",
-        "affectsGlobalScope": true
-      },
-      "../../../node_modules/@types/react-textarea-autosize/index.d.ts": {
-        "version": "654bd884851f74a93fc2165c9d3d7ec9a6346c5c4ca8a00caa49868c72ad2363",
-        "signature": "654bd884851f74a93fc2165c9d3d7ec9a6346c5c4ca8a00caa49868c72ad2363",
-        "affectsGlobalScope": false
-      },
       "../../../node_modules/@types/sinonjs__fake-timers/index.d.ts": {
         "version": "558a9770503071d5a6fc6c596f7230bb79f2d034ced4a205bd1ebcad3b5879ec",
         "signature": "558a9770503071d5a6fc6c596f7230bb79f2d034ced4a205bd1ebcad3b5879ec",
         "affectsGlobalScope": false
       },
-      "../../../node_modules/@types/stack-utils/index.d.ts": {
-        "version": "41422586881bcd739b4e62d9b91cd29909f8572aa3e3cdf316b7c50f14708d49",
-        "signature": "41422586881bcd739b4e62d9b91cd29909f8572aa3e3cdf316b7c50f14708d49",
-        "affectsGlobalScope": false
-      },
       "../../../node_modules/@types/whatwg-url/index.d.ts": {
         "version": "0f048a7e91a4c764f08be48e156c9d274a038cb454d312427214ab4d34a9a5ab",
         "signature": "0f048a7e91a4c764f08be48e156c9d274a038cb454d312427214ab4d34a9a5ab",
-        "affectsGlobalScope": false
-      },
-      "../../../node_modules/@types/yargs-parser/index.d.ts": {
-        "version": "3bdd93ec24853e61bfa4c63ebaa425ff3e474156e87a47d90122e1d8cc717c1f",
-        "signature": "3bdd93ec24853e61bfa4c63ebaa425ff3e474156e87a47d90122e1d8cc717c1f",
-        "affectsGlobalScope": false
-      },
-      "../../../node_modules/@types/yargs/index.d.ts": {
-        "version": "1a81627b04dd2feab19e26d3df04e79f50d5dae42b9b5f9181d23dc820c9f048",
-        "signature": "1a81627b04dd2feab19e26d3df04e79f50d5dae42b9b5f9181d23dc820c9f048",
         "affectsGlobalScope": false
       }
     },
@@ -1159,12 +1059,6 @@
       "../../../node_modules/@types/babel__traverse/index.d.ts": [
         "../../../node_modules/@babel/types/lib/index.d.ts"
       ],
-      "../../../node_modules/@types/clean-css/index.d.ts": [
-        "../../../node_modules/@types/clean-css/node_modules/source-map/source-map.d.ts",
-        "../node_modules/@types/node/http.d.ts",
-        "../node_modules/@types/node/https.d.ts",
-        "../node_modules/@types/node/index.d.ts"
-      ],
       "../../../node_modules/@types/cookies/index.d.ts": [
         "../node_modules/@types/connect/index.d.ts",
         "../node_modules/@types/express/index.d.ts",
@@ -1174,11 +1068,6 @@
       ],
       "../../../node_modules/@types/etag/index.d.ts": [
         "../node_modules/@types/node/index.d.ts"
-      ],
-      "../../../node_modules/@types/html-minifier/index.d.ts": [
-        "../../../node_modules/@types/clean-css/index.d.ts",
-        "../../../node_modules/@types/relateurl/index.d.ts",
-        "../../../node_modules/@types/uglify-js/index.d.ts"
       ],
       "../../../node_modules/@types/karma-coverage-istanbul-reporter/index.d.ts": [
         "../../../node_modules/@types/karma-mocha-reporter/index.d.ts",
@@ -1242,33 +1131,8 @@
       "../../../node_modules/@types/koa__cors/index.d.ts": [
         "../../../node_modules/@types/koa/index.d.ts"
       ],
-      "../../../node_modules/@types/reach__router/index.d.ts": [
-        "../../../node_modules/@types/react/index.d.ts"
-      ],
-      "../../../node_modules/@types/react-syntax-highlighter/index.d.ts": [
-        "../../../node_modules/@types/react-syntax-highlighter/index.d.ts",
-        "../../../node_modules/@types/react/index.d.ts"
-      ],
-      "../../../node_modules/@types/react-textarea-autosize/index.d.ts": [
-        "../../../node_modules/@types/react/index.d.ts"
-      ],
-      "../../../node_modules/@types/react/index.d.ts": [
-        "../../../node_modules/@types/prop-types/index.d.ts",
-        "../../../node_modules/@types/react/global.d.ts",
-        "../../../node_modules/csstype/index.d.ts"
-      ],
-      "../../../node_modules/@types/uglify-js/index.d.ts": [
-        "../../../node_modules/@types/clean-css/node_modules/source-map/source-map.d.ts"
-      ],
       "../../../node_modules/@types/whatwg-url/index.d.ts": [
         "../node_modules/@types/node/index.d.ts"
-      ],
-      "../../../node_modules/@types/yargs/index.d.ts": [
-        "../../../node_modules/@types/yargs-parser/index.d.ts"
-      ],
-      "../../../node_modules/querystring/index.d.ts": [
-        "../../../node_modules/querystring/decode.d.ts",
-        "../../../node_modules/querystring/encode.d.ts"
       ],
       "../basic-list-element.ts": [
         "../node_modules/tslib/tslib.d.ts",
@@ -1812,12 +1676,6 @@
       "../../../node_modules/@types/babel__traverse/index.d.ts": [
         "../../../node_modules/@babel/types/lib/index.d.ts"
       ],
-      "../../../node_modules/@types/clean-css/index.d.ts": [
-        "../../../node_modules/@types/clean-css/node_modules/source-map/source-map.d.ts",
-        "../node_modules/@types/node/http.d.ts",
-        "../node_modules/@types/node/https.d.ts",
-        "../node_modules/@types/node/index.d.ts"
-      ],
       "../../../node_modules/@types/cookies/index.d.ts": [
         "../node_modules/@types/connect/index.d.ts",
         "../node_modules/@types/express/index.d.ts",
@@ -1827,11 +1685,6 @@
       ],
       "../../../node_modules/@types/etag/index.d.ts": [
         "../node_modules/@types/node/index.d.ts"
-      ],
-      "../../../node_modules/@types/html-minifier/index.d.ts": [
-        "../../../node_modules/@types/clean-css/index.d.ts",
-        "../../../node_modules/@types/relateurl/index.d.ts",
-        "../../../node_modules/@types/uglify-js/index.d.ts"
       ],
       "../../../node_modules/@types/karma-coverage-istanbul-reporter/index.d.ts": [
         "../../../node_modules/@types/karma-mocha-reporter/index.d.ts",
@@ -1895,33 +1748,8 @@
       "../../../node_modules/@types/koa__cors/index.d.ts": [
         "../../../node_modules/@types/koa/index.d.ts"
       ],
-      "../../../node_modules/@types/reach__router/index.d.ts": [
-        "../../../node_modules/@types/react/index.d.ts"
-      ],
-      "../../../node_modules/@types/react-syntax-highlighter/index.d.ts": [
-        "../../../node_modules/@types/react-syntax-highlighter/index.d.ts",
-        "../../../node_modules/@types/react/index.d.ts"
-      ],
-      "../../../node_modules/@types/react-textarea-autosize/index.d.ts": [
-        "../../../node_modules/@types/react/index.d.ts"
-      ],
-      "../../../node_modules/@types/react/index.d.ts": [
-        "../../../node_modules/@types/prop-types/index.d.ts",
-        "../../../node_modules/@types/react/global.d.ts",
-        "../../../node_modules/csstype/index.d.ts"
-      ],
-      "../../../node_modules/@types/uglify-js/index.d.ts": [
-        "../../../node_modules/@types/clean-css/node_modules/source-map/source-map.d.ts"
-      ],
       "../../../node_modules/@types/whatwg-url/index.d.ts": [
         "../node_modules/@types/node/index.d.ts"
-      ],
-      "../../../node_modules/@types/yargs/index.d.ts": [
-        "../../../node_modules/@types/yargs-parser/index.d.ts"
-      ],
-      "../../../node_modules/querystring/index.d.ts": [
-        "../../../node_modules/querystring/decode.d.ts",
-        "../../../node_modules/querystring/encode.d.ts"
       ],
       "../index.ts": [
         "../src/BasicListElement.ts"
@@ -2428,17 +2256,13 @@
       "../../../node_modules/@types/babel__traverse/index.d.ts",
       "../../../node_modules/@types/browserslist-useragent/index.d.ts",
       "../../../node_modules/@types/caniuse-api/index.d.ts",
-      "../../../node_modules/@types/clean-css/index.d.ts",
-      "../../../node_modules/@types/clean-css/node_modules/source-map/source-map.d.ts",
       "../../../node_modules/@types/command-line-usage/index.d.ts",
       "../../../node_modules/@types/content-disposition/index.d.ts",
       "../../../node_modules/@types/cookies/index.d.ts",
       "../../../node_modules/@types/etag/index.d.ts",
       "../../../node_modules/@types/faker/index.d.ts",
-      "../../../node_modules/@types/html-minifier/index.d.ts",
       "../../../node_modules/@types/http-assert/index.d.ts",
       "../../../node_modules/@types/http-errors/index.d.ts",
-      "../../../node_modules/@types/is-function/index.d.ts",
       "../../../node_modules/@types/karma-coverage-istanbul-reporter/index.d.ts",
       "../../../node_modules/@types/karma-mocha-reporter/index.d.ts",
       "../../../node_modules/@types/karma-mocha/index.d.ts",
@@ -2456,25 +2280,9 @@
       "../../../node_modules/@types/mime-types/index.d.ts",
       "../../../node_modules/@types/minimatch/index.d.ts",
       "../../../node_modules/@types/path-is-inside/index.d.ts",
-      "../../../node_modules/@types/prop-types/index.d.ts",
-      "../../../node_modules/@types/reach__router/index.d.ts",
-      "../../../node_modules/@types/react-syntax-highlighter/index.d.ts",
-      "../../../node_modules/@types/react-textarea-autosize/index.d.ts",
-      "../../../node_modules/@types/react/global.d.ts",
-      "../../../node_modules/@types/react/index.d.ts",
-      "../../../node_modules/@types/relateurl/index.d.ts",
       "../../../node_modules/@types/sinonjs__fake-timers/index.d.ts",
-      "../../../node_modules/@types/stack-utils/index.d.ts",
-      "../../../node_modules/@types/uglify-js/index.d.ts",
-      "../../../node_modules/@types/uglify-js/node_modules/source-map/source-map.d.ts",
       "../../../node_modules/@types/whatwg-url/index.d.ts",
-      "../../../node_modules/@types/yargs-parser/index.d.ts",
-      "../../../node_modules/@types/yargs/index.d.ts",
-      "../../../node_modules/csstype/index.d.ts",
       "../../../node_modules/log4js/types/log4js.d.ts",
-      "../../../node_modules/querystring/decode.d.ts",
-      "../../../node_modules/querystring/encode.d.ts",
-      "../../../node_modules/querystring/index.d.ts",
       "../basic-list-element.ts",
       "../index.ts",
       "../lib/ReadOnlyArray.ts",

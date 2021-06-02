@@ -33,8 +33,8 @@
 <script>(function () {
   function polyfillsLoader() {
     function loadScript(src, type) {
-      return new Promise(function (resolve) {
-        var script = document.createElement('script');
+      return new Promise((resolve) => {
+        const script = document.createElement('script');
 
         function onLoaded() {
           if (script.parentElement) {
@@ -48,7 +48,7 @@
         script.onload = onLoaded;
 
         script.onerror = function () {
-          console.error('[polyfills-loader] failed to load: ' + src + ' check the network tab for HTTP status.');
+          console.error(`[polyfills-loader] failed to load: ${  src  } check the network tab for HTTP status.`);
           onLoaded();
         };
 
@@ -57,7 +57,7 @@
       });
     }
 
-    var polyfills = [];
+    const polyfills = [];
     polyfills.push(loadScript('./polyfills/regenerator-runtime.ebfd7b154777d0fed9fa79f20e07b8fc.js'));
 
     if (!('fetch' in window) || !('Request' in window) || !('signal' in window.Request.prototype)) {
@@ -94,7 +94,7 @@
   }
 
   if (!('noModule' in HTMLScriptElement.prototype)) {
-    var s = document.createElement('script');
+    const s = document.createElement('script');
 
     function onLoaded() {
       document.head.removeChild(s);
@@ -105,7 +105,7 @@
     s.onload = onLoaded;
 
     s.onerror = function () {
-      console.error('[polyfills-loader] failed to load: ' + s.src + ' check the network tab for HTTP status.');
+      console.error(`[polyfills-loader] failed to load: ${  s.src  } check the network tab for HTTP status.`);
       onLoaded();
     };
 
