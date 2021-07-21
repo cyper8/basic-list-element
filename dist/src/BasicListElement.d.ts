@@ -38,48 +38,62 @@ import { ReadOnlyArray } from '../lib/ReadOnlyArray.js';
  *
  */
 export declare class BasicListElement extends LitElement {
-    /**
-     * ShadowDOM styles define custom style parameters:
-     *
-     * @param ```--ble-main-color```
-     * @default '#555'
-     *
-     * @param ```--ble-secondary-color```
-     * @default '#f9f9f9'
-     *
-     * @param ```--ble-bg-color```
-     * @default 'transparent'
-     *
-     * @param ```--ble-text-color```
-     * @default ---ble-main-color
-     *
-     * @param ```--ble-border-color```
-     * @default ---ble-main-color
-     *
-     * @param ```--ble-selection-color```
-     * @default '#00ccff'
-     *
-     * @param ```--ble-focus-color```
-     * @default '#c5f3ff'
-     *
-     * @readonly
-     * @static
-     * @type {CSSResult[]}
-     * @memberof BasicListElement
-     */
-    static get styles(): CSSResult[];
-    label: string;
-    name: string;
-    multiple: boolean;
-    defaultSelectionIndex: number[];
-    get selected(): Element[];
-    get selectedIndexes(): number[];
-    private get slotChildren();
-    items: ReadOnlyArray<Element>;
-    private __selectedIndexes;
-    private selectItem;
-    private deselectItem;
-    private toggleItemSelection;
-    updated(props: Map<keyof BasicListElement, unknown>): void;
-    render(): TemplateResult;
+  /**
+   * ShadowDOM styles define custom style parameters:
+   *
+   * @param ```--ble-main-color```
+   * @default '#555'
+   *
+   * @param ```--ble-secondary-color```
+   * @default '#f9f9f9'
+   *
+   * @param ```--ble-bg-color```
+   * @default 'transparent'
+   *
+   * @param ```--ble-text-color```
+   * @default ---ble-main-color
+   *
+   * @param ```--ble-border-color```
+   * @default ---ble-main-color
+   *
+   * @param ```--ble-selection-color```
+   * @default '#00ccff'
+   *
+   * @param ```--ble-focus-color```
+   * @default '#c5f3ff'
+   *
+   * @readonly
+   * @static
+   * @type {CSSResult[]}
+   * @memberof BasicListElement
+   */
+  static get styles(): CSSResult[];
+
+  label: string;
+
+  name: string;
+
+  multiple: boolean;
+
+  defaultSelectionIndex: number[];
+
+  get selected(): Element[];
+
+  get selectedIndexes(): number[];
+
+  private get slotChildren();
+
+  items: ReadOnlyArray<Element>;
+
+  private __selectedIndexes;
+
+  private selectItem;
+
+  private deselectItem;
+
+  private toggleItemSelection;
+
+  updated(props: Map<keyof BasicListElement, unknown>): void;
+
+  render(): TemplateResult;
 }

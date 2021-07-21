@@ -33,9 +33,8 @@ describe('BasicListElement', () => {
       </basic-list-element>`
     );
 
-    const renderedOptions:
-      | NodeListOf<HTMLLIElement>
-      | undefined = ble.shadowRoot?.querySelectorAll<HTMLLIElement>('li.item');
+    const renderedOptions: NodeListOf<HTMLLIElement> | undefined =
+      ble.shadowRoot?.querySelectorAll<HTMLLIElement>('li.item');
     if (renderedOptions) {
       expect(renderedOptions.length).to.equal(3);
       options.forEach((opt, index) =>
@@ -73,9 +72,8 @@ describe('BasicListElement', () => {
         ${options.map(op => html`<p>${op}</p>`)}
       </basic-list-element>`
     );
-    const renderedOptions:
-      | NodeListOf<HTMLLIElement>
-      | undefined = ble.shadowRoot?.querySelectorAll<HTMLLIElement>('li.item');
+    const renderedOptions: NodeListOf<HTMLLIElement> | undefined =
+      ble.shadowRoot?.querySelectorAll<HTMLLIElement>('li.item');
     if (renderedOptions) {
       const theItem = renderedOptions.item(0);
       theItem.click();
@@ -93,9 +91,8 @@ describe('BasicListElement', () => {
         ${options.map(op => html`<p>${op}</p>`)}
       </basic-list-element>`
     );
-    const renderedOptions:
-      | NodeListOf<HTMLLIElement>
-      | undefined = ble.shadowRoot?.querySelectorAll<HTMLLIElement>('li.item');
+    const renderedOptions: NodeListOf<HTMLLIElement> | undefined =
+      ble.shadowRoot?.querySelectorAll<HTMLLIElement>('li.item');
     if (renderedOptions) {
       const theItems = [renderedOptions.item(0), renderedOptions.item(2)];
       theItems.forEach(i => i.click());
@@ -113,9 +110,8 @@ describe('BasicListElement', () => {
         ${options.map(op => html`<p>${op}</p>`)}
       </basic-list-element>`
     );
-    const renderedOptions:
-      | NodeListOf<HTMLLIElement>
-      | undefined = ble.shadowRoot?.querySelectorAll<HTMLLIElement>('li.item');
+    const renderedOptions: NodeListOf<HTMLLIElement> | undefined =
+      ble.shadowRoot?.querySelectorAll<HTMLLIElement>('li.item');
     if (renderedOptions) {
       const theItems = [renderedOptions.item(0), renderedOptions.item(2)];
       theItems.forEach(i => i.click());
@@ -137,9 +133,8 @@ describe('BasicListElement', () => {
         ${options.map(op => html`<p>${op}</p>`)}
       </basic-list-element>`
     );
-    const renderedOptions:
-      | NodeListOf<HTMLLIElement>
-      | undefined = ble.shadowRoot?.querySelectorAll<HTMLLIElement>('li.item');
+    const renderedOptions: NodeListOf<HTMLLIElement> | undefined =
+      ble.shadowRoot?.querySelectorAll<HTMLLIElement>('li.item');
     if (renderedOptions) {
       const theItems = selectIndexes.map(i => renderedOptions.item(i));
       const capturedEvents = SpyOn<SelectionChangedEvent>(
@@ -194,9 +189,8 @@ describe('BasicListElement', () => {
         ${options.map(op => html`<p>${op}</p>`)}
       </basic-list-element>`
     );
-    const renderedOptions:
-      | NodeListOf<HTMLLIElement>
-      | undefined = ble.shadowRoot?.querySelectorAll<HTMLLIElement>('li.item');
+    const renderedOptions: NodeListOf<HTMLLIElement> | undefined =
+      ble.shadowRoot?.querySelectorAll<HTMLLIElement>('li.item');
     if (renderedOptions) {
       const theItem = renderedOptions.item(0);
       theItem.focus();

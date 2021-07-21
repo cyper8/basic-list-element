@@ -32,85 +32,134 @@
   
 <script>(function () {
   function polyfillsLoader() {
-    function loadScript(src, type) {
-      return new Promise((resolve) => {
-        const script = document.createElement('script');
+    function loadScript(src, type, attributes = []) {
+        return new Promise(function (resolve) {
+          const script = document.createElement('script');
 
-        function onLoaded() {
-          if (script.parentElement) {
-            script.parentElement.removeChild(script);
+          function onLoaded() {
+            if (script.parentElement) {
+              script.parentElement.removeChild(script);
+            }
+
+            resolve();
           }
 
-          resolve();
-        }
+          script.src = src;
+          script.onload = onLoaded;
+          attributes.forEach(att => {
+            script.setAttribute(att.name, att.value);
+          });
 
-        script.src = src;
-        script.onload = onLoaded;
+          script.onerror = function () {
+            console.error(
+              `[polyfills-loader] failed to load: ${src} check the network tab for HTTP status.`
+            );
+            onLoaded();
+          };
 
-        script.onerror = function () {
-          console.error(`[polyfills-loader] failed to load: ${  src  } check the network tab for HTTP status.`);
-          onLoaded();
-        };
+          if (type) script.type = type;
+          document.head.appendChild(script);
+        });
+      }
 
-        if (type) script.type = type;
-        document.head.appendChild(script);
-      });
-    }
+      const polyfills = [];
+      polyfills.push(
+        loadScript(
+          './polyfills/regenerator-runtime.ebfd7b154777d0fed9fa79f20e07b8fc.js'
+        )
+      );
 
-    const polyfills = [];
-    polyfills.push(loadScript('./polyfills/regenerator-runtime.ebfd7b154777d0fed9fa79f20e07b8fc.js'));
+      if (
+        !('fetch' in window) ||
+      !('Request' in window) ||
+        !('signal' in window.Request.prototype)
+      ) {
+        polyfills.push(
+          loadScript('./polyfills/fetch.39185127fcf42e3e1035b245de5024df.js')
+        );
+      }
 
-    if (!('fetch' in window) || !('Request' in window) || !('signal' in window.Request.prototype)) {
-      polyfills.push(loadScript('./polyfills/fetch.bae39a1356d8c63423817676729b9861.js'));
-    }
+      polyfills.push(
+        loadScript('./polyfills/systemjs.b6ad53205d8657841448f9c91e83f589.js')
+      );
 
-    polyfills.push(loadScript('./polyfills/systemjs.c80aa2992e2de3b6e03317286a7104c8.js'));
+      if (
+        !(
+          'IntersectionObserver' in window &&
+          'IntersectionObserverEntry' in window &&
+          'intersectionRatio' in window.IntersectionObserverEntry.prototype
+        )
+      ) {
+        polyfills.push(
+          loadScript(
+            './polyfills/intersection-observer.e09cbb4189f6808e65aaf9f27b007c02.js'
+          )
+        );
+      }
 
-    if (!('IntersectionObserver' in window && 'IntersectionObserverEntry' in window && 'intersectionRatio' in window.IntersectionObserverEntry.prototype)) {
-      polyfills.push(loadScript('./polyfills/intersection-observer.e09cbb4189f6808e65aaf9f27b007c02.js'));
-    }
+      if (!('ResizeObserver' in window)) {
+        polyfills.push(
+          loadScript(
+            './polyfills/resize-observer.c66e75decd4adba0d63c03d136370195.js'
+          )
+        );
+      }
 
-    if (!('ResizeObserver' in window)) {
-      polyfills.push(loadScript('./polyfills/resize-observer.c66e75decd4adba0d63c03d136370195.js'));
-    }
+      if (
+        !('attachShadow' in Element.prototype) ||
+        !('getRootNode' in Element.prototype) ||
+        (window.ShadyDOM && window.ShadyDOM.force)
+      ) {
+        polyfills.push(
+          loadScript(
+            './polyfills/webcomponents.ed846db3e7c3b1354dcb129b8858e4d4.js'
+          )
+        );
+      }
 
-    if (!('attachShadow' in Element.prototype) || !('getRootNode' in Element.prototype) || window.ShadyDOM && window.ShadyDOM.force) {
-      polyfills.push(loadScript('./polyfills/webcomponents.ed846db3e7c3b1354dcb129b8858e4d4.js'));
-    }
+      if (
+        !('noModule' in HTMLScriptElement.prototype) &&
+        'getRootNode' in Element.prototype
+      ) {
+        polyfills.push(
+          loadScript(
+            './polyfills/custom-elements-es5-adapter.3342b468203af1a14ca005e80d14148f.js'
+          )
+        );
+      }
 
-    if (!('noModule' in HTMLScriptElement.prototype) && 'getRootNode' in Element.prototype) {
-      polyfills.push(loadScript('./polyfills/custom-elements-es5-adapter.3342b468203af1a14ca005e80d14148f.js'));
-    }
+      function loadFiles() {
+        System.import('./f59823a1.js');
+      }
 
-    function loadFiles() {
-      System.import('./f59823a1.js');
-    }
-
-    if (polyfills.length) {
-      Promise.all(polyfills).then(loadFiles);
-    } else {
-      loadFiles();
-    }
+      if (polyfills.length) {
+        Promise.all(polyfills).then(loadFiles);
+      } else {
+        loadFiles();
+      }
   }
 
   if (!('noModule' in HTMLScriptElement.prototype)) {
-    const s = document.createElement('script');
+      const s = document.createElement('script');
 
-    function onLoaded() {
-      document.head.removeChild(s);
-      polyfillsLoader();
-    }
+      function onLoaded() {
+        document.head.removeChild(s);
+        polyfillsLoader();
+      }
 
-    s.src = "./polyfills/core-js.27722d0d6eb8f845a39c56ba85b10fe9.js";
-    s.onload = onLoaded;
+      s.src = './polyfills/core-js.67b886accf8610d6a8546fefc03312e0.js';
+      s.onload = onLoaded;
 
-    s.onerror = function () {
-      console.error(`[polyfills-loader] failed to load: ${  s.src  } check the network tab for HTTP status.`);
-      onLoaded();
-    };
+      s.onerror = function () {
+        console.error(
+          `[polyfills-loader] failed to load: ${s.src} check the network tab for HTTP status.`
+        );
+        onLoaded();
+      };
 
-    document.head.appendChild(s);
+      document.head.appendChild(s);
   } else {
-    polyfillsLoader();
+      polyfillsLoader();
   }
-})();</script></body></html>
+})();
+</script></body></html>

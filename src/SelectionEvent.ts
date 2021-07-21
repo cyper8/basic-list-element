@@ -12,7 +12,8 @@ export class SelectionChangedEvent
     items: Element[];
     index: number[];
   }>
-  implements BLESelectionChangedEvent {
+  implements BLESelectionChangedEvent
+{
   // eslint-disable-next-line class-methods-use-this
   get type(): 'selection-changed' {
     return 'selection-changed';

@@ -181,7 +181,7 @@ export class BasicListElement extends LitElement {
         role="listbox"
         aria-multiselectable="${this.multiple}"
       >
-        ${this.items.map((item, index) => html `
+        ${this.items.map((item, index, items) => html `
               <li
                 role="option"
                 class="item"
@@ -196,17 +196,18 @@ export class BasicListElement extends LitElement {
             if (!element)
                 return;
             if (e.key === ' ') {
+                // Space Bar
                 this.toggleItemSelection(index);
             }
             if (e.key === 'Enter') {
                 this.selectItem(index);
             }
             if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
-                (_a = this.items[(index + 1) % this.items.length].parentElement) === null || _a === void 0 ? void 0 : _a.focus();
+                (_a = items[(index + 1) % items.length].parentElement) === null || _a === void 0 ? void 0 : _a.focus();
             }
             if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
-                const l = this.items.length;
-                (_b = this.items[(l + index - 1) % l].parentElement) === null || _b === void 0 ? void 0 : _b.focus();
+                const l = items.length;
+                (_b = items[(l + index - 1) % l].parentElement) === null || _b === void 0 ? void 0 : _b.focus();
             }
         }}"
                 aria-selected="${this.__selectedIndexes.has(index)}"

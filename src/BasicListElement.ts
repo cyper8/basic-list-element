@@ -206,7 +206,7 @@ export class BasicListElement extends LitElement {
         aria-multiselectable="${this.multiple}"
       >
         ${this.items.map(
-          (item, index) =>
+          (item, index, items) =>
             html`
               <li
                 role="option"
@@ -220,19 +220,18 @@ export class BasicListElement extends LitElement {
                   const element: HTMLElement | null = e.target as HTMLElement;
                   if (!element) return;
                   if (e.key === ' ') {
+                    // Space Bar
                     this.toggleItemSelection(index);
                   }
                   if (e.key === 'Enter') {
                     this.selectItem(index);
                   }
                   if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
-                    this.items[
-                      (index + 1) % this.items.length
-                    ].parentElement?.focus();
+                    items[(index + 1) % items.length].parentElement?.focus();
                   }
                   if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
-                    const l = this.items.length;
-                    this.items[(l + index - 1) % l].parentElement?.focus();
+                    const l = items.length;
+                    items[(l + index - 1) % l].parentElement?.focus();
                   }
                 }}"
                 aria-selected="${this.__selectedIndexes.has(index)}"

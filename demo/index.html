@@ -18,18 +18,22 @@
     const label = 'Hello owc World!';
     const items = ['Item 1', 'Item 2', 'Item 3'];
     let selection;
-    const re = () => render(
-      html`
-        ${selection ? selection.index : ''}
-        <basic-list-element .label=${label} @selection-changed="${(e) => {
-          selection = e.detail.selection;
-          re();
-        }}">
-          ${items.map(i=>html`<p>${i}</p>`)}
-        </basic-list-element>
-      `,
-      document.querySelector('#demo')
-    );
+    const re = () =>
+  render(
+        html`
+          ${selection ? selection.index : ''}
+          <basic-list-element
+            .label=${label}
+            @selection-changed="${e => {
+              selection = e.detail.selection;
+              re();
+            }}"
+          >
+            ${items.map(i => html`<p>${i}</p>`)}
+          </basic-list-element>
+        `,
+        document.querySelector('#demo')
+      );
     re();
   </script>
 </body>
