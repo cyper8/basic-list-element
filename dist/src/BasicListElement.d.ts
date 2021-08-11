@@ -22,18 +22,16 @@ import { ReadOnlyArray } from '../lib/ReadOnlyArray.js';
  * @type {Boolean}
  * @default false
  *
- * @field defaultSelectionIndex - indexes of items, selected by default
- * @attribute: 'default-selection-index'
- * @type {number[]}
- * @default []
+ * @readonly
+ * @field items - immutable array of elements rendered into list items
+ * @type {Element[]}
  *
  * @readonly
  * @field selected - those of retrieved via LightDOM elements,
  *                   which are selected
  * @type {Element[]}
  *
- * @readonly
- * @field selectedIndexes - the same as previous, but indexes
+ * @field selectedIndexes - sets or gets index of currently selected items
  * @type {number[]}
  *
  */
@@ -68,32 +66,18 @@ export declare class BasicListElement extends LitElement {
    * @memberof BasicListElement
    */
   static get styles(): CSSResult[];
-
   label: string;
-
   name: string;
-
   multiple: boolean;
-
-  defaultSelectionIndex: number[];
-
   get selected(): Element[];
-
+  set selectedIndexes(indexes: number[]);
   get selectedIndexes(): number[];
-
   private get slotChildren();
-
   items: ReadOnlyArray<Element>;
-
   private __selectedIndexes;
-
   private selectItem;
-
   private deselectItem;
-
   private toggleItemSelection;
-
   updated(props: Map<keyof BasicListElement, unknown>): void;
-
   render(): TemplateResult;
 }

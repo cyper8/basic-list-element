@@ -1,16 +1,17 @@
 export class SelectionChangedEvent extends CustomEvent {
-    // eslint-disable-next-line class-methods-use-this
-    get type() {
-        return 'selection-changed';
-    }
     constructor(selection, options = {
         bubbles: true,
         composed: true,
     }) {
-        super('selection-changed', {
+        super(SelectionChangedEvent.type, {
             ...options,
             detail: selection,
         });
     }
+    // eslint-disable-next-line class-methods-use-this
+    get type() {
+        return SelectionChangedEvent.type;
+    }
 }
+SelectionChangedEvent.type = 'selection-changed';
 //# sourceMappingURL=SelectionEvent.js.map

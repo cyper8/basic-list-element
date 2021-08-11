@@ -1,11 +1,13 @@
 import { fixture, expect } from '@open-wc/testing';
 import { html, TemplateResult } from 'lit-html';
+import { repeat } from 'lit-html/directives/repeat';
 import { SpyOn } from 'dom-event-spy';
 
 import { BasicListElement } from '../src/BasicListElement.js';
 import '../basic-list-element.js';
 
 import { SelectionChangedEvent } from '../src/SelectionEvent.js';
+import { ItemsChangedEvent } from '../src/ItemsChangedEvent.js';
 
 describe('BasicListElement', () => {
   it('can have label', async () => {
@@ -65,6 +67,34 @@ describe('BasicListElement', () => {
     }
   });
 
+  it("fires 'items-changed' event upon slot changes", async () => {
+    const varOptions: string[][] = [
+      ['Option 1', 'Option 2', 'Option 3'],
+      ['Option 4', 'Option 5'],
+    ];
+
+    const testEventHandler =
+      (variant: string[]) => (event: ItemsChangedEvent) => {
+        event.detail.items.forEach((item, index) => {
+          expect(item.textContent).to.contain(variant[index]);
+        });
+      };
+
+    const ble = async (items: string[]) =>
+      fixture<BasicListElement>(
+        html`<basic-list-element
+          @items-changed=${testEventHandler(items)}
+          label="List"
+          >${repeat(items, opt => html`<p>${opt}</p>`)}</basic-list-element
+        >`
+      );
+
+    for (const variant of varOptions) {
+      // eslint-disable-next-line no-await-in-loop
+      await ble(variant);
+    }
+  });
+
   it('selects option upon click', async () => {
     const options: string[] = ['Option 1', 'Option 2', 'Option 3'];
     const ble = await fixture<BasicListElement>(
@@ -120,6 +150,23 @@ describe('BasicListElement', () => {
       theItems.forEach(i => {
         expect(ble.selected).to.include(i.children[0]);
       });
+    } else {
+      throw new Chai.AssertionError('Element failed to render shadow root');
+    }
+  });
+
+  it('has setter to alow imperative setting selection', async () => {
+    const options: string[] = ['Option 1', 'Option 2', 'Option 3'];
+    const ble = await fixture<BasicListElement>(
+      html`<basic-list-element multiple label="List" .selectedIndexes=${[0, 2]}>
+        ${options.map(op => html`<p>${op}</p>`)}
+      </basic-list-element>`
+    );
+    const renderedOptions: NodeListOf<HTMLLIElement> | undefined =
+      ble.shadowRoot?.querySelectorAll<HTMLLIElement>('li.item');
+    if (renderedOptions) {
+      expect(renderedOptions.item(0)).to.have.attribute('selected');
+      expect(renderedOptions.item(2)).to.have.attribute('selected');
     } else {
       throw new Chai.AssertionError('Element failed to render shadow root');
     }

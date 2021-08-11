@@ -1,28 +1,17 @@
+export declare type SelectionChangedDetail = {
+  elements: Element[];
+  index: number[];
+};
 export interface BLESelectionChangedEvent
-  extends CustomEvent<{
-    items: Element[];
-    index: number[];
-  }> {
+  extends CustomEvent<SelectionChangedDetail> {
   type: 'selection-changed';
-  detail: {
-    items: Element[];
-    index: number[];
-  };
+  detail: SelectionChangedDetail;
 }
 export declare class SelectionChangedEvent
-  extends CustomEvent<{
-    items: Element[];
-    index: number[];
-  }>
+  extends CustomEvent<SelectionChangedDetail>
   implements BLESelectionChangedEvent
 {
+  static type: 'selection-changed';
   get type(): 'selection-changed';
-
-  constructor(
-    selection: {
-      items: Element[];
-      index: number[];
-    },
-    options?: CustomEventInit
-  );
+  constructor(selection: SelectionChangedDetail, options?: CustomEventInit);
 }

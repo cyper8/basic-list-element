@@ -1,5 +1,6 @@
 import { fixture, expect } from '@open-wc/testing';
 import { html } from 'lit-html';
+import { repeat } from 'lit-html/directives/repeat';
 import { SpyOn } from 'dom-event-spy';
 import '../basic-list-element.js';
 describe('BasicListElement', () => {
@@ -42,6 +43,26 @@ describe('BasicListElement', () => {
             list.items.forEach((item, index) => {
                 expect(item.textContent).to.contain(variant[index]);
             });
+        }
+    });
+    it("fires 'items-changed' event upon slot changes", async () => {
+        const varOptions = [
+            ['Option 1', 'Option 2', 'Option 3'],
+            ['Option 4', 'Option 5'],
+        ];
+        const testEventHandler = (variant) => (event) => {
+            event.detail.items.forEach((item, index) => {
+                expect(item.textContent).to.contain(variant[index]);
+            });
+        };
+        const ble = async (items) => fixture(html `<basic-list-element
+          @items-changed=${testEventHandler(items)}
+          label="List"
+          >${repeat(items, opt => html `<p>${opt}</p>`)}</basic-list-element
+        >`);
+        for (const variant of varOptions) {
+            // eslint-disable-next-line no-await-in-loop
+            await ble(variant);
         }
     });
     it('selects option upon click', async () => {
@@ -93,6 +114,21 @@ describe('BasicListElement', () => {
             theItems.forEach(i => {
                 expect(ble.selected).to.include(i.children[0]);
             });
+        }
+        else {
+            throw new Chai.AssertionError('Element failed to render shadow root');
+        }
+    });
+    it('has setter to alow imperative setting selection', async () => {
+        var _a;
+        const options = ['Option 1', 'Option 2', 'Option 3'];
+        const ble = await fixture(html `<basic-list-element multiple label="List" .selectedIndexes=${[0, 2]}>
+        ${options.map(op => html `<p>${op}</p>`)}
+      </basic-list-element>`);
+        const renderedOptions = (_a = ble.shadowRoot) === null || _a === void 0 ? void 0 : _a.querySelectorAll('li.item');
+        if (renderedOptions) {
+            expect(renderedOptions.item(0)).to.have.attribute('selected');
+            expect(renderedOptions.item(2)).to.have.attribute('selected');
         }
         else {
             throw new Chai.AssertionError('Element failed to render shadow root');

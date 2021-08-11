@@ -1,6 +1,5 @@
 import { TemplateResult } from 'lit-html';
 import '../basic-list-element.js';
-
 declare const _default: {
   title: string;
   component: string;

@@ -1,8 +1,10 @@
 import { __decorate } from "tslib";
-import { html, css, LitElement, property, internalProperty, } from 'lit-element';
+import { html, css, LitElement, property, state, } from 'lit-element';
 import { SelectionChangedEvent } from './SelectionEvent.js';
-import { resetBoxes } from './reset-styles.js';
+import { resetBoxes } from './reset-boxes-style.js';
+import { BLEStyle } from './ble-style.js';
 import { ReadOnlyArray } from '../lib/ReadOnlyArray.js';
+import { ItemsChangedEvent } from './ItemsChangedEvent.js';
 /**
  * BasicListElement - web component based on LitElement class
  * that takes LightDOM children and adds them as selectable options
@@ -25,18 +27,16 @@ import { ReadOnlyArray } from '../lib/ReadOnlyArray.js';
  * @type {Boolean}
  * @default false
  *
- * @field defaultSelectionIndex - indexes of items, selected by default
- * @attribute: 'default-selection-index'
- * @type {number[]}
- * @default []
+ * @readonly
+ * @field items - immutable array of elements rendered into list items
+ * @type {Element[]}
  *
  * @readonly
  * @field selected - those of retrieved via LightDOM elements,
  *                   which are selected
  * @type {Element[]}
  *
- * @readonly
- * @field selectedIndexes - the same as previous, but indexes
+ * @field selectedIndexes - sets or gets index of currently selected items
  * @type {number[]}
  *
  */
@@ -46,7 +46,6 @@ export class BasicListElement extends LitElement {
         this.label = '';
         this.name = '';
         this.multiple = false;
-        this.defaultSelectionIndex = [];
         this.items = [];
         this.__selectedIndexes = new Set();
     }
@@ -96,42 +95,16 @@ export class BasicListElement extends LitElement {
           position: relative;
           background-color: var(--ble-bg-color);
         }
-
-        .list {
-          /* display: grid;
-          grid-template-areas: 'ul'; */
-          margin: 0.3em;
-          padding: 0;
-          width: 100%;
-          /* border: 1px solid var(--ble-border-color); */
-          /* font-size: 1.25rem; */
-          cursor: pointer;
-          line-height: 1.1;
-          background-color: var(--ble-secondary-color);
-          /* align-items: center; */
-          list-style-type: none;
-        }
-
-        .item {
-          display: block;
-          padding: 0.5em 1em;
-        }
-
-        .item:focus,
-        .item:hover {
-          outline: none;
-          background-color: var(--ble-focus-color);
-        }
-
-        .item[selected] {
-          font-weight: bold;
-          background-color: var(--ble-selection-color);
-        }
       `,
+            BLEStyle,
         ];
     }
     get selected() {
         return this.selectedIndexes.map(i => this.items[i]);
+    }
+    set selectedIndexes(indexes) {
+        this.__selectedIndexes = new Set(!this.multiple ? indexes.slice(0, 1) : [...indexes]);
+        this.requestUpdate('selectedIndexes');
     }
     get selectedIndexes() {
         return Array.from(this.__selectedIndexes);
@@ -163,12 +136,11 @@ export class BasicListElement extends LitElement {
         if (props.has('selectedIndexes')) {
             this.dispatchEvent(new SelectionChangedEvent({
                 index: this.selectedIndexes,
-                items: this.selected,
+                elements: this.selected,
             }));
         }
-        if (props.has('defaultSelectionIndex')) {
-            this.__selectedIndexes = new Set();
-            this.defaultSelectionIndex.forEach(i => this.selectItem(i));
+        if (props.has('items')) {
+            this.dispatchEvent(new ItemsChangedEvent({ items: this.items }));
         }
     }
     render() {
@@ -187,14 +159,13 @@ export class BasicListElement extends LitElement {
                 class="item"
                 tabindex="0"
                 data-index="${index}"
-                @click="${() => {
+                @click="${(e) => {
+            e.stopPropagation();
             this.toggleItemSelection(index);
         }}"
                 @keydown="${(e) => {
             var _a, _b;
-            const element = e.target;
-            if (!element)
-                return;
+            e.stopPropagation();
             if (e.key === ' ') {
                 // Space Bar
                 this.toggleItemSelection(index);
@@ -222,11 +193,12 @@ export class BasicListElement extends LitElement {
             const children = this.slotChildren;
             if (children && children.length) {
                 // Populate items from light DOM
+                if (this.items && this.items.length) {
+                    if (this.__selectedIndexes && this.__selectedIndexes.size) {
+                        this.__selectedIndexes = new Set();
+                    }
+                }
                 this.items = new ReadOnlyArray(Array.from(children));
-                // clear selection
-                this.__selectedIndexes = new Set();
-                // Select the defaults
-                this.defaultSelectionIndex.forEach(i => this.selectItem(i));
             }
         }}"
       ></slot>
@@ -243,12 +215,15 @@ __decorate([
     property({ type: Boolean })
 ], BasicListElement.prototype, "multiple", void 0);
 __decorate([
-    property({ type: Array, attribute: 'default-selection-index' })
-], BasicListElement.prototype, "defaultSelectionIndex", void 0);
+    property({ attribute: false, noAccessor: true })
+], BasicListElement.prototype, "selected", null);
+__decorate([
+    property({ attribute: false, noAccessor: true })
+], BasicListElement.prototype, "selectedIndexes", null);
 __decorate([
     property({ type: Array })
 ], BasicListElement.prototype, "items", void 0);
 __decorate([
-    internalProperty()
+    state()
 ], BasicListElement.prototype, "__selectedIndexes", void 0);
 //# sourceMappingURL=BasicListElement.js.map

@@ -1,32 +1,33 @@
+export type SelectionChangedDetail = {
+  elements: Element[];
+  index: number[];
+};
+
 export interface BLESelectionChangedEvent
-  extends CustomEvent<{ items: Element[]; index: number[] }> {
+  extends CustomEvent<SelectionChangedDetail> {
   type: 'selection-changed';
-  detail: {
-    items: Element[];
-    index: number[];
-  };
+  detail: SelectionChangedDetail;
 }
 
 export class SelectionChangedEvent
-  extends CustomEvent<{
-    items: Element[];
-    index: number[];
-  }>
+  extends CustomEvent<SelectionChangedDetail>
   implements BLESelectionChangedEvent
 {
+  static type: 'selection-changed' = 'selection-changed';
+
   // eslint-disable-next-line class-methods-use-this
   get type(): 'selection-changed' {
-    return 'selection-changed';
+    return SelectionChangedEvent.type;
   }
 
   constructor(
-    selection: { items: Element[]; index: number[] },
+    selection: SelectionChangedDetail,
     options: CustomEventInit = {
       bubbles: true,
       composed: true,
     }
   ) {
-    super('selection-changed', {
+    super(SelectionChangedEvent.type, {
       ...options,
       detail: selection,
     });
