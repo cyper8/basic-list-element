@@ -1,6 +1,6 @@
 import { fixture, expect } from '@open-wc/testing';
-import { html, TemplateResult } from 'lit-html';
-import { repeat } from 'lit-html/directives/repeat';
+import { html, TemplateResult } from 'lit';
+import { repeat } from 'lit/directives/repeat.js';
 import { SpyOn } from 'dom-event-spy';
 
 import { BasicListElement } from '../src/BasicListElement.js';

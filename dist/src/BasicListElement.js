@@ -1,5 +1,6 @@
 import { __decorate } from "tslib";
-import { html, css, LitElement, property, state, } from 'lit-element';
+import { html, css, LitElement } from 'lit';
+import { property, state } from 'lit/decorators.js';
 import { SelectionChangedEvent } from './SelectionEvent.js';
 import { resetBoxes } from './reset-boxes-style.js';
 import { BLEStyle } from './ble-style.js';

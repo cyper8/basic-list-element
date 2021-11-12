@@ -1,4 +1,4 @@
-import { LitElement, CSSResult, TemplateResult } from 'lit-element';
+import { LitElement, CSSResult, TemplateResult } from 'lit';
 import { ReadOnlyArray } from '../lib/ReadOnlyArray.js';
 /**
  * BasicListElement - web component based on LitElement class

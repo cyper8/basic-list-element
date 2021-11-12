@@ -1,12 +1,5 @@
-import {
-  html,
-  css,
-  LitElement,
-  property,
-  CSSResult,
-  TemplateResult,
-  state,
-} from 'lit-element';
+import { html, css, LitElement, CSSResult, TemplateResult } from 'lit';
+import { property, state } from 'lit/decorators.js';
 import { SelectionChangedEvent } from './SelectionEvent.js';
 import { resetBoxes } from './reset-boxes-style.js';
 import { BLEStyle } from './ble-style.js';

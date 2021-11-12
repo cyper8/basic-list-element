@@ -1,1 +1,1 @@
-export declare const BLEStyle: import('lit-element').CSSResult;
+export declare const BLEStyle: import('lit').CSSResult;
