@@ -6,7 +6,7 @@ import { SpyOn } from 'dom-event-spy';
 import { BasicListElement } from '../src/BasicListElement.js';
 import '../basic-list-element.js';
 
-import { SelectionChangedEvent } from '../src/SelectionEvent.js';
+import { SelectionChangedEvent } from '../src/SelectionChangedEvent.js';
 import { ItemsChangedEvent } from '../src/ItemsChangedEvent.js';
 
 describe('BasicListElement', () => {
