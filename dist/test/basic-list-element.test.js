@@ -34,12 +34,13 @@ describe('BasicListElement', () => {
     it('replaces items, when slotted children change', async () => {
         const varOptions = [
             ['Option 1', 'Option 2', 'Option 3'],
-            ['Option 4', 'Option 5'],
+            ['Option 1', 'Option2', 'Option 4', 'Option 5'],
         ];
         const ble = async (items) => fixture(html `<basic-list-element label="List">${items}</basic-list-element>`);
         for (const variant of varOptions) {
             // eslint-disable-next-line no-await-in-loop
             const list = await ble(variant.map(opt => html `<p>${opt}</p>`));
+            expect(list.items.length).equal(variant.length);
             list.items.forEach((item, index) => {
                 expect(item.textContent).to.contain(variant[index]);
             });
