@@ -1,1 +1,1 @@
-export declare const resetBoxes: import('lit').CSSResult;
+export declare const resetBoxes: import("lit").CSSResult;

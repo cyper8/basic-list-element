@@ -51,20 +51,38 @@ export class BasicListElement extends LitElement {
    * @param ```--ble-secondary-color```
    * @default '#f9f9f9'
    *
-   * @param ```--ble-bg-color```
-   * @default 'transparent'
-   *
-   * @param ```--ble-text-color```
-   * @default ---ble-main-color
-   *
-   * @param ```--ble-border-color```
-   * @default ---ble-main-color
-   *
    * @param ```--ble-selection-color```
    * @default '#00ccff'
    *
    * @param ```--ble-focus-color```
    * @default '#c5f3ff'
+   *
+   * @param ```--ble-background```
+   * @default 'transparent'
+   *
+   * @param ```--ble-text```
+   * @default '1rem serif var(--ble-main-color)'
+   *
+   * @param ```--ble-border```
+   * @default 'solid 0px var(--ble-main-color)'
+   *
+   * @param ```--ble-selected-background```
+   * @default 'transparent'
+   *
+   * @param ```--ble-selected-text```
+   * @default 'bold 1rem serif var(--ble-main-color)'
+   *
+   * @param ```--ble-selected-border```
+   * @default 'solid 0px var(--ble-selection-color)'
+   *
+   * @param ```--ble-focus-text```
+   * @default 'var(--ble-text)'
+   *
+   * @param ```--ble-focus-background```
+   * @default 'var(--ble-focus-color)'
+   *
+   * @param ```--ble-focus-border```
+   * @default 'var(--ble-border)'
    *
    * @readonly
    * @static
@@ -77,16 +95,23 @@ export class BasicListElement extends LitElement {
       css`
         :host {
           --ble-main-color: #555;
-          --ble-secondary-color: #f9f9f9;
-          --ble-bg-color: transparent;
-          --ble-text-color: var(--ble-main-color);
-          --ble-border-color: var(--ble-main-color);
+          --ble-secondary-color: transparent;
           --ble-selection-color: #00ccff;
           --ble-focus-color: #c5f3ff;
+
+          --ble-background: var(--ble-secondary-color);
+          --ble-text: 1rem serif var(--ble-main-color);
+          --ble-border: none;
+
+          --ble-selected-background: var(--ble-selection-color);
+          --ble-selected-text: bold var(--ble-text);
+          --ble-selected-border: var(--ble-border);
+
+          --ble-focus-text: var(--ble-text);
+          --ble-focus-background: var(--ble-focus-color);
+          --ble-focus-border: var(--ble-border);
           display: block;
-          color: var(--ble-text-color);
           position: relative;
-          background-color: var(--ble-bg-color);
         }
       `,
       BLEStyle,
@@ -166,7 +191,7 @@ export class BasicListElement extends LitElement {
   render(): TemplateResult {
     return html`
       <div id="listlabel" class="label">${this.label}</div>
-      <ul
+      <div
         class="list"
         title="options list"
         aria-labelledby="listlabel"
@@ -174,55 +199,55 @@ export class BasicListElement extends LitElement {
         aria-multiselectable="${this.multiple}"
       >
         ${this.items.map(
-          (item, index, items) =>
-            html`
-              <li
+      (item, index, items) =>
+        html`
+              <div
                 role="option"
                 class="item"
                 tabindex="0"
                 data-index="${index}"
                 @click="${(e: MouseEvent) => {
-                  e.stopPropagation();
-                  this.toggleItemSelection(index);
-                }}"
+            e.stopPropagation();
+            this.toggleItemSelection(index);
+          }}"
                 @keydown="${(e: KeyboardEvent) => {
-                  e.stopPropagation();
-                  if (e.key === ' ') {
-                    // Space Bar
-                    this.toggleItemSelection(index);
-                  }
-                  if (e.key === 'Enter') {
-                    this.selectItem(index);
-                  }
-                  if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
-                    items[(index + 1) % items.length].parentElement?.focus();
-                  }
-                  if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
-                    const l = items.length;
-                    items[(l + index - 1) % l].parentElement?.focus();
-                  }
-                }}"
+            e.stopPropagation();
+            if (e.key === ' ') {
+              // Space Bar
+              this.toggleItemSelection(index);
+            }
+            if (e.key === 'Enter') {
+              this.selectItem(index);
+            }
+            if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+              items[(index + 1) % items.length].parentElement?.focus();
+            }
+            if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+              const l = items.length;
+              items[(l + index - 1) % l].parentElement?.focus();
+            }
+          }}"
                 aria-selected="${this.__selectedIndexes.has(index)}"
                 ?selected="${this.__selectedIndexes.has(index)}"
               >
                 ${item}
-              </li>
+              </div>
             `
-        )}
-      </ul>
+    )}
+      </div>
       <slot
         @slotchange="${() => {
-          const children = this.slotChildren;
-          if (children && children.length) {
-            // Populate items from light DOM
-            if (this.items && this.items.length) {
-              if (this.__selectedIndexes && this.__selectedIndexes.size) {
-                this.__selectedIndexes = new Set();
-              }
+        const children = this.slotChildren;
+        if (children && children.length) {
+          // Populate items from light DOM
+          if (this.items && this.items.length) {
+            if (this.__selectedIndexes && this.__selectedIndexes.size) {
+              this.__selectedIndexes = new Set();
             }
-            this.items = new ReadOnlyArray(Array.from(children));
           }
-        }}"
+          this.items = new ReadOnlyArray(Array.from(children));
+        }
+      }}"
       ></slot>
     `;
   }

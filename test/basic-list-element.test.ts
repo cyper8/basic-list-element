@@ -36,7 +36,7 @@ describe('BasicListElement', () => {
     );
 
     const renderedOptions: NodeListOf<HTMLLIElement> | undefined =
-      ble.shadowRoot?.querySelectorAll<HTMLLIElement>('li.item');
+      ble.shadowRoot?.querySelectorAll<HTMLLIElement>('.item');
     if (renderedOptions) {
       expect(renderedOptions.length).to.equal(3);
       options.forEach((opt, index) =>
@@ -104,7 +104,7 @@ describe('BasicListElement', () => {
       </basic-list-element>`
     );
     const renderedOptions: NodeListOf<HTMLLIElement> | undefined =
-      ble.shadowRoot?.querySelectorAll<HTMLLIElement>('li.item');
+      ble.shadowRoot?.querySelectorAll<HTMLLIElement>('.item');
     if (renderedOptions) {
       const theItem = renderedOptions.item(0);
       theItem.click();
@@ -123,7 +123,7 @@ describe('BasicListElement', () => {
       </basic-list-element>`
     );
     const renderedOptions: NodeListOf<HTMLLIElement> | undefined =
-      ble.shadowRoot?.querySelectorAll<HTMLLIElement>('li.item');
+      ble.shadowRoot?.querySelectorAll<HTMLLIElement>('.item');
     if (renderedOptions) {
       const theItems = [renderedOptions.item(0), renderedOptions.item(2)];
       theItems.forEach(i => i.click());
@@ -142,7 +142,7 @@ describe('BasicListElement', () => {
       </basic-list-element>`
     );
     const renderedOptions: NodeListOf<HTMLLIElement> | undefined =
-      ble.shadowRoot?.querySelectorAll<HTMLLIElement>('li.item');
+      ble.shadowRoot?.querySelectorAll<HTMLLIElement>('.item');
     if (renderedOptions) {
       const theItems = [renderedOptions.item(0), renderedOptions.item(2)];
       theItems.forEach(i => i.click());
@@ -164,7 +164,7 @@ describe('BasicListElement', () => {
       </basic-list-element>`
     );
     const renderedOptions: NodeListOf<HTMLLIElement> | undefined =
-      ble.shadowRoot?.querySelectorAll<HTMLLIElement>('li.item');
+      ble.shadowRoot?.querySelectorAll<HTMLLIElement>('.item');
     if (renderedOptions) {
       expect(renderedOptions.item(0)).to.have.attribute('selected');
       expect(renderedOptions.item(2)).to.have.attribute('selected');
@@ -182,7 +182,7 @@ describe('BasicListElement', () => {
       </basic-list-element>`
     );
     const renderedOptions: NodeListOf<HTMLLIElement> | undefined =
-      ble.shadowRoot?.querySelectorAll<HTMLLIElement>('li.item');
+      ble.shadowRoot?.querySelectorAll<HTMLLIElement>('.item');
     if (renderedOptions) {
       const theItems = selectIndexes.map(i => renderedOptions.item(i));
       const capturedEvents = SpyOn<SelectionChangedEvent>(
@@ -238,23 +238,23 @@ describe('BasicListElement', () => {
       </basic-list-element>`
     );
     const renderedOptions: NodeListOf<HTMLLIElement> | undefined =
-      ble.shadowRoot?.querySelectorAll<HTMLLIElement>('li.item');
+      ble.shadowRoot?.querySelectorAll<HTMLLIElement>('.item');
     if (renderedOptions) {
       const theItem = renderedOptions.item(0);
       theItem.focus();
       await ble.updateComplete;
       expect(
         window.getComputedStyle(theItem).backgroundColor ===
-          'rgb(197, 243, 255)' ||
-          window.getComputedStyle(theItem).backgroundColor === '#c5f3ff'
+        'rgb(197, 243, 255)' ||
+        window.getComputedStyle(theItem).backgroundColor === '#c5f3ff'
       ).to.be.true;
       theItem.dispatchEvent(arrowDownEvent);
       await ble.updateComplete;
       expect(
         window.getComputedStyle(renderedOptions.item(1)).backgroundColor ===
-          'rgb(197, 243, 255)' ||
-          window.getComputedStyle(renderedOptions.item(1)).backgroundColor ===
-            '#c5f3ff'
+        'rgb(197, 243, 255)' ||
+        window.getComputedStyle(renderedOptions.item(1)).backgroundColor ===
+        '#c5f3ff'
       ).to.be.true;
       renderedOptions.item(1).dispatchEvent(arrowUpEvent);
       await ble.updateComplete;

@@ -71,60 +71,98 @@
       ],
       "events": [
         {
-          "name":"selection-changed",
+          "name": "selection-changed",
           "summary": "fires when selected options change",
           "description": "Event fires when options have been selected",
           "type": "SelectionEvent",
           "inheritedFrom": "CustomEvent"
         }
       ],
-      "slots": [{
-        "name": "",
-        "summary": "Default slot that has items content",
-        "description": "Default slot that has items content"
-      }],
+      "slots": [
+        {
+          "name": "",
+          "summary": "Default slot that has items content",
+          "description": "Default slot that has items content"
+        }
+      ],
       "cssProperties": [
         {
           "name": "--ble-main-color",
-          "description": "Main Color (dark): information, controls, borders",
+          "description": "",
           "type": "Color",
-          "defaultValue": "#777"
+          "defaultValue": "#555"
         },
         {
           "name": "--ble-secondary-color",
-          "description": "Light items: contrast background",
-          "type": "Color",
-          "defaultValue": "#f9f9f9"
-        },
-        {
-          "name": "--ble-bg-color",
-          "description": "Background around the element",
+          "description": "",
           "type": "Color",
           "defaultValue": "transparent"
         },
         {
-          "name": "--ble-text-color",
-          "description": "Color of the text",
-          "type": "Color",
-          "defaultValue": "Same as Main (--ble-main-color)"
-        },
-        {
-          "name": "--ble-border-color",
-          "description": "Borders color",
-          "type": "Color",
-          "defaultValue": "Same as Main (--ble-main-color)"
-        },
-        {
           "name": "--ble-selection-color",
-          "description": "Color of the selected item(s)",
+          "description": "",
           "type": "Color",
           "defaultValue": "#00ccff"
         },
         {
           "name": "--ble-focus-color",
-          "description": "Hover and focus color",
+          "description": "",
           "type": "Color",
           "defaultValue": "#c5f3ff"
+        },
+        {
+          "name": "--ble-background",
+          "description": "",
+          "type": "String",
+          "defaultValue": "var(--ble-secondary-color)"
+        },
+        {
+          "name": "--ble-text",
+          "description": "",
+          "type": "String",
+          "defaultValue": "1rem serif var(--ble-main-color)"
+        },
+        {
+          "name": "--ble-border",
+          "description": "",
+          "type": "String",
+          "defaultValue": "none"
+        },
+        {
+          "name": "--ble-selected-background",
+          "description": "",
+          "type": "String",
+          "defaultValue": "var(--selection-color)"
+        },
+        {
+          "name": "--ble-selected-text",
+          "description": "",
+          "type": "String",
+          "defaultValue": "bold var(--ble-text)"
+        },
+        {
+          "name": "--ble-selected-border",
+          "description": "",
+          "type": "String",
+          "defaultValue": "var(--ble-border)"
+        },
+        {
+          "name": "--ble-focus-text",
+          "description": "",
+          "type": "String",
+          "defaultValue": "var(--ble-text)"
+        },
+        {
+          "name": "--ble-focus-background",
+          "description": "",
+          "type": "String",
+          "defaultValue": "var(--ble-focus-color)"
+        },
+        {
+          "name": "--ble-focus-border",
+          "description": "",
+          "type": "String",
+          "defaultValue": "var(--ble-border)"
         }
       ]
     }

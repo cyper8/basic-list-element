@@ -1,29 +1,31 @@
 import { css } from 'lit';
 export const BLEStyle = css `
-  li.list {
-    margin: 0.3em;
+  .list {
+    margin: 0;
     padding: 0;
-    width: 100%;
     cursor: pointer;
-    line-height: 1.1;
-    background-color: var(--ble-secondary-color);
-    list-style-type: none;
   }
 
   .item {
-    display: block;
-    padding: 0.5em 1em;
+    margin: 0;
+    padding: 0;
+    font: var(--ble-text);
+    background: var(--ble-background);
+    border: var(--ble-border);
   }
 
   .item:focus,
   .item:hover {
     outline: none;
-    background-color: var(--ble-focus-color);
+    font: var(--ble-focus-text);
+    border: var(--ble-focus-border);
+    background: var(--ble-focus-background);
   }
 
   .item[selected] {
-    font-weight: bold;
-    background-color: var(--ble-selection-color);
+    font: var(--ble-selected-text);
+    border: var(--ble-selected-border);
+    background: var(--ble-selected-background);
   }
 `;
 //# sourceMappingURL=ble-style.js.map

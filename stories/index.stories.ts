@@ -12,11 +12,17 @@ export default {
     multiple: { control: 'boolean' },
     mainColor: { control: 'color' },
     secColor: { control: 'color' },
-    bgColor: { control: 'color' },
-    textColor: { control: 'color' },
-    borderColor: { control: 'color' },
+    iBackground: { control: 'text' },
+    iFont: { control: 'text' },
+    iBorder: { control: 'text' },
     selectionColor: { control: 'color' },
     focusColor: { control: 'color' },
+    selBackground: { control: 'text' },
+    selFont: { control: 'text' },
+    selBorder: { control: 'text' },
+    focusFont: { control: 'text' },
+    focusBorder: { control: 'text' },
+    focusBackground: { control: 'text' },
   },
   parameters: {
     actions: {
@@ -35,13 +41,19 @@ interface ArgTypes {
   label?: string;
   name?: string;
   multiple?: boolean;
-  mainColor?: string;
-  secColor?: string;
-  bgColor?: string;
-  textColor?: string;
-  borderColor?: string;
-  selectionColor?: string;
-  focusColor?: string;
+  mainColor: string;
+  secColor: string;
+  iBackground: string;
+  iFont: string;
+  iBorder: string;
+  selectionColor: string;
+  focusColor: string;
+  selBackground: string;
+  selFont: string;
+  selBorder: string;
+  focusFont: string;
+  focusBorder: string;
+  focusBackground?: string;
   slot?: TemplateResult | TemplateResult[];
 }
 
@@ -50,22 +62,34 @@ const Template: Story<ArgTypes> = ({
   name = 'list',
   multiple = false,
   mainColor = '#777',
-  secColor = '#f9f9f9',
-  bgColor = 'transparent',
-  textColor = mainColor,
-  borderColor = mainColor,
+  secColor = 'transparent',
   selectionColor = '#00ccff',
   focusColor = '#c5f3ff',
+  iBackground = 'var(--ble-secondary-color)',
+  iFont = `1rem serif var(--ble-main-color)`,
+  iBorder = `none`,
+  selBackground = `var(--ble-selection-color)`,
+  selFont = `bold var(--ble-text)`,
+  selBorder = `var(--ble-border)`,
+  focusFont = `var(--ble-text)`,
+  focusBorder = `var(--ble-border)`,
+  focusBackground = `var(--ble-focus-color)`,
   slot,
 }: ArgTypes) => html`
   <basic-list-element
     style="--ble-main-color: ${mainColor};
-    --ble-secondary-color: ${secColor};
-    --ble-bg-color: ${bgColor};
-    --ble-text-color: ${textColor};
-    --ble-border-color: ${borderColor};
-    --ble-selection-color: ${selectionColor};
-    --ble-focus-color: ${focusColor}"
+--ble-secondary-color: ${secColor};
+--ble-selection-color: ${selectionColor};
+--ble-focus-color: ${focusColor};
+--ble-background: ${iBackground};
+--ble-text: ${iFont};
+--ble-border: ${iBorder};
+--ble-selected-background: ${selBackground};
+--ble-selected-text: ${selFont};
+--ble-selected-border: ${selBorder};
+--ble-focus-text: ${focusFont};
+--ble-focus-background: ${focusBackground};
+--ble-focus-border: ${focusBorder};"
     .label=${label}
     .name=${name}
     ?multiple=${multiple}
@@ -89,7 +113,7 @@ CustomName.args = {
 
 export const SlottedContent = Template.bind({});
 SlottedContent.args = {
-  slot: opts.map(op => html`<p>${op}</p>`),
+  slot: opts.map(op => html`<div>${op}</div>`),
 };
 
 SlottedContent.argTypes = {
@@ -101,9 +125,6 @@ CustomStyling.args = {
   ...SlottedContent.args,
   mainColor: 'black',
   secColor: 'pink',
-  bgColor: 'green',
-  textColor: 'red',
-  borderColor: 'yellow',
   selectionColor: 'white',
   focusColor: 'blue',
 };

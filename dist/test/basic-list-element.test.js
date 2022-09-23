@@ -22,7 +22,7 @@ describe('BasicListElement', () => {
         const ble = await fixture(html `<basic-list-element label="List">
         ${options.map(op => html `<p>${op}</p>`)}
       </basic-list-element>`);
-        const renderedOptions = (_a = ble.shadowRoot) === null || _a === void 0 ? void 0 : _a.querySelectorAll('li.item');
+        const renderedOptions = (_a = ble.shadowRoot) === null || _a === void 0 ? void 0 : _a.querySelectorAll('.item');
         if (renderedOptions) {
             expect(renderedOptions.length).to.equal(3);
             options.forEach((opt, index) => expect(renderedOptions.item(index).textContent).to.contain(opt));
@@ -72,7 +72,7 @@ describe('BasicListElement', () => {
         const ble = await fixture(html `<basic-list-element label="List">
         ${options.map(op => html `<p>${op}</p>`)}
       </basic-list-element>`);
-        const renderedOptions = (_a = ble.shadowRoot) === null || _a === void 0 ? void 0 : _a.querySelectorAll('li.item');
+        const renderedOptions = (_a = ble.shadowRoot) === null || _a === void 0 ? void 0 : _a.querySelectorAll('.item');
         if (renderedOptions) {
             const theItem = renderedOptions.item(0);
             theItem.click();
@@ -89,7 +89,7 @@ describe('BasicListElement', () => {
         const ble = await fixture(html `<basic-list-element multiple label="List">
         ${options.map(op => html `<p>${op}</p>`)}
       </basic-list-element>`);
-        const renderedOptions = (_a = ble.shadowRoot) === null || _a === void 0 ? void 0 : _a.querySelectorAll('li.item');
+        const renderedOptions = (_a = ble.shadowRoot) === null || _a === void 0 ? void 0 : _a.querySelectorAll('.item');
         if (renderedOptions) {
             const theItems = [renderedOptions.item(0), renderedOptions.item(2)];
             theItems.forEach(i => i.click());
@@ -106,7 +106,7 @@ describe('BasicListElement', () => {
         const ble = await fixture(html `<basic-list-element multiple label="List">
         ${options.map(op => html `<p>${op}</p>`)}
       </basic-list-element>`);
-        const renderedOptions = (_a = ble.shadowRoot) === null || _a === void 0 ? void 0 : _a.querySelectorAll('li.item');
+        const renderedOptions = (_a = ble.shadowRoot) === null || _a === void 0 ? void 0 : _a.querySelectorAll('.item');
         if (renderedOptions) {
             const theItems = [renderedOptions.item(0), renderedOptions.item(2)];
             theItems.forEach(i => i.click());
@@ -126,7 +126,7 @@ describe('BasicListElement', () => {
         const ble = await fixture(html `<basic-list-element multiple label="List" .selectedIndexes=${[0, 2]}>
         ${options.map(op => html `<p>${op}</p>`)}
       </basic-list-element>`);
-        const renderedOptions = (_a = ble.shadowRoot) === null || _a === void 0 ? void 0 : _a.querySelectorAll('li.item');
+        const renderedOptions = (_a = ble.shadowRoot) === null || _a === void 0 ? void 0 : _a.querySelectorAll('.item');
         if (renderedOptions) {
             expect(renderedOptions.item(0)).to.have.attribute('selected');
             expect(renderedOptions.item(2)).to.have.attribute('selected');
@@ -142,7 +142,7 @@ describe('BasicListElement', () => {
         const ble = await fixture(html `<basic-list-element multiple label="List">
         ${options.map(op => html `<p>${op}</p>`)}
       </basic-list-element>`);
-        const renderedOptions = (_a = ble.shadowRoot) === null || _a === void 0 ? void 0 : _a.querySelectorAll('li.item');
+        const renderedOptions = (_a = ble.shadowRoot) === null || _a === void 0 ? void 0 : _a.querySelectorAll('.item');
         if (renderedOptions) {
             const theItems = selectIndexes.map(i => renderedOptions.item(i));
             const capturedEvents = SpyOn(ble, 500, 'selection-changed');
@@ -193,7 +193,7 @@ describe('BasicListElement', () => {
         const ble = await fixture(html `<basic-list-element label="List">
         ${options.map(op => html `<p>${op}</p>`)}
       </basic-list-element>`);
-        const renderedOptions = (_a = ble.shadowRoot) === null || _a === void 0 ? void 0 : _a.querySelectorAll('li.item');
+        const renderedOptions = (_a = ble.shadowRoot) === null || _a === void 0 ? void 0 : _a.querySelectorAll('.item');
         if (renderedOptions) {
             const theItem = renderedOptions.item(0);
             theItem.focus();
