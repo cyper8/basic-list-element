@@ -24,6 +24,12 @@
           "default": false
         },
         {
+          "name": "disabled",
+          "type": "Boolean",
+          "description": "When list is disabled, no selecting is possible",
+          "default": false
+        },
+        {
           "name": "defaultSelectionIndex",
           "type": "Array<number>",
           "description": "Which options should be selected by default",

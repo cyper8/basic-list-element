@@ -8,6 +8,7 @@ export default {
         label: { control: 'text' },
         name: { control: 'text' },
         multiple: { control: 'boolean' },
+        disabled: { control: 'boolean' },
         mainColor: { control: 'color' },
         secColor: { control: 'color' },
         iBackground: { control: 'text' },
@@ -28,7 +29,7 @@ export default {
         },
     },
 };
-const Template = ({ label = 'Hello world', name = 'list', multiple = false, mainColor = '#777', secColor = 'transparent', selectionColor = '#00ccff', focusColor = '#c5f3ff', iBackground = 'var(--ble-secondary-color)', iFont = `1rem serif var(--ble-main-color)`, iBorder = `none`, selBackground = `var(--ble-selection-color)`, selFont = `bold var(--ble-text)`, selBorder = `var(--ble-border)`, focusFont = `var(--ble-text)`, focusBorder = `var(--ble-border)`, focusBackground = `var(--ble-focus-color)`, slot, }) => html `
+const Template = ({ label = 'Hello world', name = 'list', multiple = false, disabled = false, mainColor = '#777', secColor = 'transparent', selectionColor = '#00ccff', focusColor = '#c5f3ff', iBackground = 'var(--ble-secondary-color)', iFont = `1rem serif var(--ble-main-color)`, iBorder = `none`, selBackground = `var(--ble-selection-color)`, selFont = `bold var(--ble-text)`, selBorder = `var(--ble-border)`, focusFont = `var(--ble-text)`, focusBorder = `var(--ble-border)`, focusBackground = `var(--ble-focus-color)`, slot, }) => html `
   <basic-list-element
     style="--ble-main-color: ${mainColor};
 --ble-secondary-color: ${secColor};
@@ -46,6 +47,7 @@ const Template = ({ label = 'Hello world', name = 'list', multiple = false, main
     .label=${label}
     .name=${name}
     ?multiple=${multiple}
+    ?disabled=${disabled}
   >
     ${slot}
   </basic-list-element>

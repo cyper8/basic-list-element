@@ -13,6 +13,9 @@ declare const _default: {
         multiple: {
             control: string;
         };
+        disabled: {
+            control: string;
+        };
         mainColor: {
             control: string;
         };
@@ -69,6 +72,7 @@ interface ArgTypes {
     label?: string;
     name?: string;
     multiple?: boolean;
+    disabled?: boolean;
     mainColor: string;
     secColor: string;
     iBackground: string;

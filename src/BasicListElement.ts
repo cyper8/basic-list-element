@@ -27,6 +27,10 @@ import { ItemsChangedEvent } from './ItemsChangedEvent.js';
  * @field multiple - multiple selection mode
  * @type {Boolean}
  * @default false
+ * 
+ * @field disabled - disable selection function and relevant styling
+ * @type {Boolean}
+ * @default false
  *
  * @readonly
  * @field items - immutable array of elements rendered into list items
@@ -127,6 +131,9 @@ export class BasicListElement extends LitElement {
   @property({ type: Boolean })
   multiple = false;
 
+  @property({ type: Boolean })
+  disabled: boolean = false;
+
   @property({ attribute: false, noAccessor: true })
   get selected(): Element[] {
     return this.selectedIndexes.map(i => this.items[i]);
@@ -197,6 +204,8 @@ export class BasicListElement extends LitElement {
         aria-labelledby="listlabel"
         role="listbox"
         aria-multiselectable="${this.multiple}"
+        aria-disabled="${this.disabled}"
+        ?disabled="${this.disabled}"
       >
         ${this.items.map(
       (item, index, items) =>
@@ -206,25 +215,29 @@ export class BasicListElement extends LitElement {
                 class="item"
                 tabindex="0"
                 data-index="${index}"
+                aria-disabled="${this.disabled}"
+                ?disabled="${this.disabled}"
                 @click="${(e: MouseEvent) => {
             e.stopPropagation();
-            this.toggleItemSelection(index);
+            if (!this.disabled) this.toggleItemSelection(index);
           }}"
                 @keydown="${(e: KeyboardEvent) => {
             e.stopPropagation();
-            if (e.key === ' ') {
-              // Space Bar
-              this.toggleItemSelection(index);
-            }
-            if (e.key === 'Enter') {
-              this.selectItem(index);
-            }
-            if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
-              items[(index + 1) % items.length].parentElement?.focus();
-            }
-            if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
-              const l = items.length;
-              items[(l + index - 1) % l].parentElement?.focus();
+            if (!this.disabled) {
+              if (e.key === ' ') {
+                // Space Bar
+                this.toggleItemSelection(index);
+              }
+              if (e.key === 'Enter') {
+                this.selectItem(index);
+              }
+              if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+                items[(index + 1) % items.length].parentElement?.focus();
+              }
+              if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+                const l = items.length;
+                items[(l + index - 1) % l].parentElement?.focus();
+              }
             }
           }}"
                 aria-selected="${this.__selectedIndexes.has(index)}"

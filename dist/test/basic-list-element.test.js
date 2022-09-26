@@ -232,4 +232,46 @@ describe('BasicListElement', () => {
         await expect(ble).shadowDom.to.be.accessible();
     });
 });
+describe('BasicListElement in disabled state', async () => {
+    let disabledBLE;
+    before(async () => {
+        disabledBLE = await fixture(html `<basic-list-element disabled >
+      ${['Option 1', 'Option 2', 'Option 3'].map(op => html `<div>${op}</div>`)}
+    </basic-list-element>`);
+    });
+    it('marks items with \'disabled\' attribute', () => {
+        var _a, _b;
+        expect((_b = (_a = disabledBLE.shadowRoot) === null || _a === void 0 ? void 0 : _a.querySelectorAll('.item[disabled]')) === null || _b === void 0 ? void 0 : _b.length).equal(3);
+    });
+    it('does not select anything upon click (and fires no selection events)', async () => {
+        const capturedEvents = SpyOn(disabledBLE, 500, 'selection-changed');
+        disabledBLE.items[0].click();
+        await disabledBLE.updateComplete;
+        expect(capturedEvents).to.throw;
+        expect(disabledBLE.selected.length).to.equal(0);
+    });
+    it('has no keyboard navigation', async () => {
+        var _a, _b;
+        const arrowDownEvent = new KeyboardEvent('keydown', {
+            key: 'ArrowDown',
+            bubbles: true,
+            cancelable: true,
+            composed: true,
+        });
+        let item1 = (_a = disabledBLE.shadowRoot) === null || _a === void 0 ? void 0 : _a.querySelectorAll('.item').item(0);
+        let item2 = (_b = disabledBLE.shadowRoot) === null || _b === void 0 ? void 0 : _b.querySelectorAll('.item').item(1);
+        if (item1 && item2) {
+            let initialBG = window.getComputedStyle(item1).backgroundColor;
+            item1.focus();
+            await disabledBLE.updateComplete;
+            let selectedBG = window.getComputedStyle(item1).backgroundColor;
+            expect(initialBG).equal(selectedBG);
+            item1.dispatchEvent(arrowDownEvent);
+            await disabledBLE.updateComplete;
+            expect(getComputedStyle(item2).backgroundColor).equal(getComputedStyle(item1).backgroundColor).equal(initialBG);
+        }
+        else
+            expect.fail(`BLE setup failure`);
+    });
+});
 //# sourceMappingURL=basic-list-element.test.js.map

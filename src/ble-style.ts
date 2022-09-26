@@ -4,6 +4,9 @@ export const BLEStyle = css`
   .list {
     margin: 0;
     padding: 0;
+  }
+
+  .list:not([disabled]) {
     cursor: pointer;
   }
 
@@ -15,15 +18,19 @@ export const BLEStyle = css`
     border: var(--ble-border);
   }
 
-  .item:focus,
-  .item:hover {
+  .item[disabled] {
+    filter: grayscale(50%);
+  }
+
+  .item:not([disabled]):focus,
+  .item:not([disabled]):hover {
     outline: none;
     font: var(--ble-focus-text);
     border: var(--ble-focus-border);
     background: var(--ble-focus-background);
   }
 
-  .item[selected] {
+  .item[selected]:not([disabled]) {
     font: var(--ble-selected-text);
     border: var(--ble-selected-border);
     background: var(--ble-selected-background);

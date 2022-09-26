@@ -28,6 +28,10 @@ import { ItemsChangedEvent } from './ItemsChangedEvent.js';
  * @type {Boolean}
  * @default false
  *
+ * @field disabled - disable selection function and relevant styling
+ * @type {Boolean}
+ * @default false
+ *
  * @readonly
  * @field items - immutable array of elements rendered into list items
  * @type {Element[]}
@@ -47,6 +51,7 @@ export class BasicListElement extends LitElement {
         this.label = '';
         this.name = '';
         this.multiple = false;
+        this.disabled = false;
         this.items = [];
         this.__selectedIndexes = new Set();
     }
@@ -178,6 +183,8 @@ export class BasicListElement extends LitElement {
         aria-labelledby="listlabel"
         role="listbox"
         aria-multiselectable="${this.multiple}"
+        aria-disabled="${this.disabled}"
+        ?disabled="${this.disabled}"
       >
         ${this.items.map((item, index, items) => html `
               <div
@@ -185,26 +192,31 @@ export class BasicListElement extends LitElement {
                 class="item"
                 tabindex="0"
                 data-index="${index}"
+                aria-disabled="${this.disabled}"
+                ?disabled="${this.disabled}"
                 @click="${(e) => {
             e.stopPropagation();
-            this.toggleItemSelection(index);
+            if (!this.disabled)
+                this.toggleItemSelection(index);
         }}"
                 @keydown="${(e) => {
             var _a, _b;
             e.stopPropagation();
-            if (e.key === ' ') {
-                // Space Bar
-                this.toggleItemSelection(index);
-            }
-            if (e.key === 'Enter') {
-                this.selectItem(index);
-            }
-            if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
-                (_a = items[(index + 1) % items.length].parentElement) === null || _a === void 0 ? void 0 : _a.focus();
-            }
-            if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
-                const l = items.length;
-                (_b = items[(l + index - 1) % l].parentElement) === null || _b === void 0 ? void 0 : _b.focus();
+            if (!this.disabled) {
+                if (e.key === ' ') {
+                    // Space Bar
+                    this.toggleItemSelection(index);
+                }
+                if (e.key === 'Enter') {
+                    this.selectItem(index);
+                }
+                if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+                    (_a = items[(index + 1) % items.length].parentElement) === null || _a === void 0 ? void 0 : _a.focus();
+                }
+                if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+                    const l = items.length;
+                    (_b = items[(l + index - 1) % l].parentElement) === null || _b === void 0 ? void 0 : _b.focus();
+                }
             }
         }}"
                 aria-selected="${this.__selectedIndexes.has(index)}"
@@ -240,6 +252,9 @@ __decorate([
 __decorate([
     property({ type: Boolean })
 ], BasicListElement.prototype, "multiple", void 0);
+__decorate([
+    property({ type: Boolean })
+], BasicListElement.prototype, "disabled", void 0);
 __decorate([
     property({ attribute: false, noAccessor: true })
 ], BasicListElement.prototype, "selected", null);

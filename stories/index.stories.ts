@@ -10,6 +10,7 @@ export default {
     label: { control: 'text' },
     name: { control: 'text' },
     multiple: { control: 'boolean' },
+    disabled: { control: 'boolean' },
     mainColor: { control: 'color' },
     secColor: { control: 'color' },
     iBackground: { control: 'text' },
@@ -41,6 +42,7 @@ interface ArgTypes {
   label?: string;
   name?: string;
   multiple?: boolean;
+  disabled?: boolean;
   mainColor: string;
   secColor: string;
   iBackground: string;
@@ -61,6 +63,7 @@ const Template: Story<ArgTypes> = ({
   label = 'Hello world',
   name = 'list',
   multiple = false,
+  disabled = false,
   mainColor = '#777',
   secColor = 'transparent',
   selectionColor = '#00ccff',
@@ -93,6 +96,7 @@ const Template: Story<ArgTypes> = ({
     .label=${label}
     .name=${name}
     ?multiple=${multiple}
+    ?disabled=${disabled}
   >
     ${slot}
   </basic-list-element>

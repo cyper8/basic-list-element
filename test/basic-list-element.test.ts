@@ -286,3 +286,56 @@ describe('BasicListElement', () => {
     await expect(ble).shadowDom.to.be.accessible();
   });
 });
+
+describe('BasicListElement in disabled state', async () => {
+  let disabledBLE: BasicListElement;
+
+  before(async () => {
+    disabledBLE = await fixture<BasicListElement>(
+      html`<basic-list-element disabled >
+      ${['Option 1', 'Option 2', 'Option 3'].map(op => html`<div>${op}</div>`)}
+    </basic-list-element>`);
+  })
+
+  it('marks items with \'disabled\' attribute', () => {
+    expect(disabledBLE.shadowRoot?.querySelectorAll('.item[disabled]')?.length).equal(3);
+  });
+
+  it('does not select anything upon click (and fires no selection events)', async () => {
+    const capturedEvents = SpyOn<SelectionChangedEvent>(
+      disabledBLE,
+      500,
+      'selection-changed'
+    );
+    (disabledBLE.items[0] as HTMLElement).click();
+    await disabledBLE.updateComplete;
+    expect(capturedEvents).to.throw;
+    expect(disabledBLE.selected.length).to.equal(0);
+  });
+
+  it('has no keyboard navigation', async () => {
+    const arrowDownEvent = new KeyboardEvent('keydown', {
+      key: 'ArrowDown',
+      bubbles: true,
+      cancelable: true,
+      composed: true,
+    });
+    let item1 = disabledBLE.shadowRoot?.querySelectorAll<HTMLElement>('.item').item(0);
+    let item2 = disabledBLE.shadowRoot?.querySelectorAll<HTMLElement>('.item').item(1);
+    if (item1 && item2) {
+
+      let initialBG = window.getComputedStyle(item1).backgroundColor;
+
+      item1.focus();
+      await disabledBLE.updateComplete;
+      let selectedBG = window.getComputedStyle(item1).backgroundColor;
+      expect(initialBG).equal(selectedBG);
+
+      item1.dispatchEvent(arrowDownEvent);
+      await disabledBLE.updateComplete;
+      expect(getComputedStyle(item2).backgroundColor).equal(getComputedStyle(item1).backgroundColor).equal(initialBG);
+
+    } else expect.fail(`BLE setup failure`);
+  });
+
+});

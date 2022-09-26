@@ -22,6 +22,10 @@ import { ReadOnlyArray } from '../lib/ReadOnlyArray.js';
  * @type {Boolean}
  * @default false
  *
+ * @field disabled - disable selection function and relevant styling
+ * @type {Boolean}
+ * @default false
+ *
  * @readonly
  * @field items - immutable array of elements rendered into list items
  * @type {Element[]}
@@ -87,6 +91,7 @@ export declare class BasicListElement extends LitElement {
     label: string;
     name: string;
     multiple: boolean;
+    disabled: boolean;
     get selected(): Element[];
     set selectedIndexes(indexes: number[]);
     get selectedIndexes(): number[];
