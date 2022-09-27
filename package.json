@@ -1,11 +1,19 @@
 {
   "name": "basic-list-element",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Webcomponent basic-list-element following open-wc recommendations",
   "author": "Anton Yashchuk",
   "license": "MIT",
-  "main": "dist/index.js",
-  "module": "dist/index.js",
+  "main": "./dist/index.js",
+  "browser": "./dist/index.js",
+  "module": "./dist/index.js",
+  "files": [
+    "./dist/"
+  ],
+  "exports": {
+    ".": "./dist/index.js",
+    "./readonly-array": "./dist/lib/ReadOnlyArray.js"
+  },
   "scripts": {
     "build": "rimraf ./dist && tsc",
     "start": "npm run build && concurrently -k -r \"tsc --watch --preserveWatchOutput\" \"wds\"",
