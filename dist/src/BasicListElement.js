@@ -6,6 +6,7 @@ import { resetBoxes } from './reset-boxes-style.js';
 import { BLEStyle } from './ble-style.js';
 import { ReadOnlyArray } from '../lib/ReadOnlyArray.js';
 import { ItemsChangedEvent } from './ItemsChangedEvent.js';
+var bypass = false;
 /**
  * BasicListElement - web component based on LitElement class
  * that takes LightDOM children and adds them as selectable options
@@ -229,14 +230,18 @@ export class BasicListElement extends LitElement {
       <slot
         @slotchange="${() => {
             const children = this.slotChildren;
-            if (children && children.length) {
+            if (!bypass) { // update is triggered by light dom children transfer to shadow
                 // Populate items from light DOM
-                if (this.items && this.items.length) {
-                    if (this.__selectedIndexes && this.__selectedIndexes.size) {
+                if (this.items.length) {
+                    if (this.__selectedIndexes.size) {
                         this.__selectedIndexes = new Set();
                     }
                 }
                 this.items = new ReadOnlyArray(Array.from(children));
+                bypass = true; // bypass next update which happens because slot children are moved to shadow root
+            }
+            else {
+                bypass = false; // return to normal operation after items are moved
             }
         }}"
       ></slot>
